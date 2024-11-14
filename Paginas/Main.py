@@ -1,53 +1,66 @@
 import streamlit as st
 import pandas as pd
+import os
+
+def load_data():
+    # Verificar si los datos ya están cargados en session_state
+    if 'actors_df' not in st.session_state:
+        st.session_state.actors_df = load_csv_chunks('actors_part', 'actors')
+        st.session_state.movies_df = load_csv_chunks('movies_part', 'movies')
+        st.session_state.posters_df = load_csv_chunks('posters_part', 'posters')
+        st.session_state.genres_df = load_csv_chunks('genres_part', 'genres')
+
+def load_csv_chunks(prefix, name):
+    """Carga los CSVs de manera eficiente por chunks y los concatena."""
+    directorio = 'Archivos'
+    csv_files = [f for f in os.listdir(directorio) if f.startswith(prefix) and f.endswith('.csv')]
+    chunk_size = 50000  # Ajustar según la memoria y tamaño del archivo
+    
+    # Lista para almacenar los chunks
+    dfs = []
+    
+    # Leer todos los archivos correspondientes por chunks
+    for csv_file in csv_files:
+        file_path = os.path.join(directorio, csv_file)
+        for chunk in pd.read_csv(file_path, sep=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', chunksize=chunk_size):
+            dfs.append(chunk.fillna(0))  # Unir los chunks en la lista
+
+    # Concatenar todos los chunks en un solo DataFrame
+    return pd.concat(dfs, ignore_index=True)
 
 def main():
+    # Cargar los datos si no se han cargado
+    load_data()
+
     st.title("Cinnaboxd")
     
-    # Cargar los CSV y mostrar las películas disponibles
-    dp_chunks = pd.read_csv('Archivos/posters.csv', sep=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', chunksize=25000)
-    dp = next(dp_chunks).fillna(0)
-
-    dm_chunks = pd.read_csv('Archivos/movies.csv', sep=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', chunksize=25000)
-    dm = next(dm_chunks).fillna(0)
-
-    da_chunks = pd.read_csv('Archivos/actors.csv', sep=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', chunksize=25000)
-    da = next(da_chunks).fillna(0)
-
-    dg_chunks = pd.read_csv('Archivos/genres.csv', sep=',', encoding='ISO-8859-1', engine='python', on_bad_lines='skip', chunksize=25000)
-    dg = next(dg_chunks).fillna(0)
+    # Usar los datos de session_state
+    actors_df = st.session_state.actors_df
+    movies_df = st.session_state.movies_df
+    posters_df = st.session_state.posters_df
+    genres_df = st.session_state.genres_df
 
     # Crear una lista de nombres de películas para que el usuario elija
-    movie_names = dm['name'].unique()
+    movie_names = movies_df['name'].unique()
     movie_selected = st.selectbox("Selecciona una película", movie_names)
 
     if movie_selected:
-        # Buscar los datos relacionados con la película seleccionada
-        movie_id = dm[dm['name'] == movie_selected]['id'].values[0]
+        movie_id = movies_df[movies_df['name'] == movie_selected]['id'].values[0]
 
         # Buscar géneros, actores y la URL del poster para esta película
-        movie_genres = dg[dg['id'] == movie_id]['genre'].unique()
-        movie_actors = da[da['id'] == movie_id]['name'].unique()[:5]
-        movie_tagline = dm[dm['id'] == movie_id]['tagline'].unique()
-        movie_description = dm[dm['id'] == movie_id]['description'].unique()
-        movie_rating = dm[dm['id'] == movie_id]['rating'].unique()
-        movie_minute = dm[dm['id'] == movie_id]['minute'].unique()
-        movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
+        movie_genres = genres_df[genres_df['id'] == movie_id]['genre'].unique()
+        movie_actors = actors_df[actors_df['id'] == movie_id]['name'].unique()[:5]
+        movie_tagline = movies_df[movies_df['id'] == movie_id]['tagline'].unique()
+        movie_description = movies_df[movies_df['id'] == movie_id]['description'].unique()
+        movie_rating = movies_df[movies_df['id'] == movie_id]['rating'].unique()
+        movie_minute = movies_df[movies_df['id'] == movie_id]['minute'].unique()
+        movie_poster_url = posters_df[posters_df['id'] == movie_id]['link'].values[0]
 
-        # Filtrar las películas de todos los géneros y obtener las tres primeras de cada uno
-        # Primero, obtener las películas de los géneros de la película seleccionada
-        movie_genres_3 = pd.concat([dg[dg['genre'] == genre] for genre in movie_genres])
-
-        # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
-        movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
-
-        # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
-        movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
-
-        # Obtener las tres primeras películas por género (esto puede ser ajustado si lo deseas)
+        movie_genres_3 = pd.concat([genres_df[genres_df['genre'] == genre] for genre in movie_genres])
+        movie_genres_3 = movie_genres_3.merge(movies_df[['id', 'name']], on='id', how='left')
+        movie_genres_3 = movie_genres_3.merge(posters_df[['id', 'link']], on='id', how='left')
         movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
 
-        # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
         st.session_state.selected_movie = {
             'name': movie_selected,
             'id': movie_id,
@@ -58,15 +71,10 @@ def main():
             'rating': movie_rating,
             'minute': movie_minute,
             'poster_url': movie_poster_url,
-            'genres_3': movie_genres_3  # Aquí están las películas similares
+            'genres_3': movie_genres_3
         }
-    
+
     st.write('Dale dos clicks al botón después de seleccionar la película: ')
-    # Crear botones para cambiar a la página personal
     if st.button("Buscar"):
         st.session_state.page = "Personal"  # Cambiar a la página personal
-
-
-
-
 
