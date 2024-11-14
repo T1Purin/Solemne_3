@@ -1,7 +1,7 @@
 import streamlit as st
 
 def personal():
-    st.title("Página Personal: Detalles de la Película Seleccionada")
+    st.title("Detalles de la Película Seleccionada")
 
     # Verificar si ya hay una película seleccionada en session_state
     if "selected_movie" in st.session_state:
