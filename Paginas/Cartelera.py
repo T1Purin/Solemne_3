@@ -6,7 +6,7 @@ def cartelera():
 
     # Verificar si ya hay películas seleccionadas por género
     if "selected_movies_genre" in st.session_state:
-        genre_movies = st.session_state.selected_genre_movies_genre
+        genre_movies = st.session_state.selected_movies_genre
 
         # Mostrar las películas por género
         for idx, row in genre_movies.iterrows():
