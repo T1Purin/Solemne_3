@@ -96,14 +96,14 @@ def main():
 
     
     #Df con solo los generos
-    name_genre = dg["genre"].unique()
+    name_genre = dg_combined["genre"].unique()
 
     #Selector de generos
     genre_selection = st.sidebar.selectbox("Seleccione un género", ["Seleccione un género"] + list(name_genre))
 
     #Mostrar las peliculas del genero especificio
     if genre_selection != "Seleccione un género":  
-        genero_movies = dg[dg["genre"] == genre_selection]["id"].unique()
+        genero_movies = dg_combined[dg_combined["genre"] == genre_selection]["id"].unique()
         filtrar_movies = dm[dm["id"].isin(genero_movies)]
         top10 = filtrar_movies.head(10)  #Las 10 peliculas de ese genero
 
@@ -229,15 +229,39 @@ def main():
     if st.button("Buscar"):
         st.session_state.page = "Personal"  # Cambiar a la página personal
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
         #Df con solo los generos
-    name_genre = dg["genre"].unique()
+    name_genre = dg_combined["genre"].unique()
 
     #Selector de generos
     genre_selection = st.sidebar.selectbox("Seleccione un género", ["Seleccione un género"] + list(name_genre))
 
     #Mostrar las peliculas del genero especificio
     if genre_selection != "Seleccione un género":  
-        genero_movies = dg[dg["genre"] == genre_selection]["id"].unique()
+        genero_movies = dg_combined[dg_combined["genre"] == genre_selection]["id"].unique()
         filtrar_movies = dm[dm["id"].isin(genero_movies)]
         top10 = filtrar_movies.head(10)  #Las 10 peliculas de ese genero
 
