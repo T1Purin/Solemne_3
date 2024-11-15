@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-def Cartelera():
+def cartelera():
     st.title("Cartelera de Películas por Género")
 
     # Verificar si ya hay películas seleccionadas por género
