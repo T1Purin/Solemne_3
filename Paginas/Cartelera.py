@@ -21,5 +21,4 @@ def Cartelera():
     st.write('Dale dos clics al botón para regresar:')
     if st.button("Regresar a la Página Principal"):
         st.session_state.page = "Main"  # Cambiar a la página principal
-        st.session_state.selected_movie = None  # Limpiar la película seleccionada
 
