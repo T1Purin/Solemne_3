@@ -13,6 +13,8 @@ def app():
         main()
     elif st.session_state.page == "Personal":
         Principal()
+    elif st.session_state.page == "Cartelera":
+        Cartelera()
 
 
 # Ejecutar la aplicación
