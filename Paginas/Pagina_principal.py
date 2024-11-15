@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-def Principal():
+def principal():
     st.title("Detalles de la Película Seleccionada")
 
     # Verificar si ya hay una película seleccionada en session_state
