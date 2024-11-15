@@ -131,9 +131,9 @@ def main():
             # Mostrar el nombre de la película como un botón
             movie_id = row[1]["id"]
             
-            if col.button(f"*{movie_name}*"):
+            if col.button(f"*{movie_name}*") == 'Barbie':
                 # Buscar los datos relacionados con la película seleccionada
-                movie_name = dm[dm['name'] == filtrar_movies]['id'].values[0]
+                movie_name = dm[dm['name'] == movie_name]['id'].values[0]
         
                 # Buscar géneros, actores y la URL del póster para esta película
                 movie_genres = dg_combined[dg_combined['id'] == movie_name]['genre'].unique()  # Usar los géneros combinados
