@@ -177,8 +177,8 @@ def main():
                 else:
                     st.write("No se encontraron géneros para esta película.")
                         
-            st.write('Dale dos clicks al botón después de seleccionar la película: ')
-            st.session_state.page = "Cartelera"  # Cambiar a la página personal
+                st.write('Dale dos clicks al botón después de seleccionar la película: ')
+                st.session_state.page = "Cartelera"  # Cambiar a la página personal
 
 
                     
