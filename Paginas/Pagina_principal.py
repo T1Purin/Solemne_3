@@ -1,7 +1,7 @@
 import streamlit as st
-import pandas as pd  # Asegúrate de que pandas esté importado si no lo has hecho aún
+import pandas as pd
 
-def personal():
+def Principal():
     st.title("Detalles de la Película Seleccionada")
 
     # Verificar si ya hay una película seleccionada en session_state
@@ -55,14 +55,12 @@ def personal():
 
         # Mostrar las 4 películas similares (si existen)
         if 'genres_3' in movie_data and not movie_data['genres_3'].empty:  # Asegúrate de que 'genres_3' existe y no está vacío
-            cols = st.columns(3)  # Cambiar a 4 columnas para las películas similares
+            cols = st.columns(3)  # Cambiar a 3 columnas para las películas similares
 
             # Filtrar las películas similares para excluir la película actual
             filtered_similar_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
 
             # Asegurarse de que no haya duplicados de las películas ya mostradas
-            # Asumimos que la lista de películas similares (filtered_similar_movies) ya está libre de duplicados.
-            # Para asegurarnos, también filtramos cualquier duplicado que esté en la barra de películas similares.
             displayed_movie_ids = [movie_id]  # Inicializar con la película seleccionada
 
             # Iteramos sobre las columnas para obtener los IDs de las películas que ya están en la barra
@@ -73,22 +71,17 @@ def personal():
             filtered_similar_movies = filtered_similar_movies[~filtered_similar_movies['id'].isin(displayed_movie_ids)]
 
             # Si hay menos de 4 películas similares, reemplazamos las faltantes con otras películas
-            if len(filtered_similar_movies) < 4:
-                # Reemplazar las películas faltantes con otras películas de 'genres_3', excluyendo la película actual
-                remaining_movies_needed = 4 - len(filtered_similar_movies)
-                
+            if len(filtered_similar_movies) < 3:
                 # Filtramos nuevamente las películas similares para tomar solo las que no sean la película actual
                 other_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
-
-                # Evitar duplicados: Filtrar otras películas para asegurarse de que no estén ya en 'filtered_similar_movies'
                 other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
 
-                # Añadimos más películas hasta completar 4
-                additional_movies = other_movies.head(remaining_movies_needed)  # Tomamos las primeras 'n' películas
+                # Añadimos más películas hasta completar 3
+                additional_movies = other_movies.head(3 - len(filtered_similar_movies))
                 filtered_similar_movies = pd.concat([filtered_similar_movies, additional_movies], ignore_index=True)
 
-            # Asegurarse de que haya exactamente 4 películas
-            filtered_similar_movies = filtered_similar_movies.head(4)
+            # Asegurarse de que haya exactamente 3 películas
+            filtered_similar_movies = filtered_similar_movies.head(3)
 
             # Guardamos los IDs de las películas que vamos a mostrar en la barra para evitar duplicados en futuras consultas
             st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
@@ -99,6 +92,7 @@ def personal():
                     st.image(row['link'], caption=row['name'], width=220)
                     # Crear un enlace a la página de detalles de la película seleccionada
                     movie_link = f"/detalles_pelicula/{row['id']}"  # Asumiendo que 'id' es el identificador único de la película
+                    st.markdown(f"[Ver detalles]({movie_link})")
 
             if len(filtered_similar_movies) == 0:
                 st.write("No hay películas similares disponibles.")
@@ -109,11 +103,7 @@ def personal():
         st.write("No se ha seleccionado ninguna película aún.")
 
     # Crear un botón para regresar a la página principal
-    st.write('Dale dos clicks al botón para regresar:')
+    st.write('Dale dos clics al botón para regresar:')
     if st.button("Regresar a la Página Principal"):
         st.session_state.page = "Main"  # Cambiar a la página principal
-
-
-
-
-
+        st.session_state.selected_movie = None  # Limpiar la película seleccionada
