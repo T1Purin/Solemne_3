@@ -162,7 +162,7 @@ def main():
                         movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
         
                         # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
-                        st.session_state.selected_movie = {
+                        st.session_state.selected_movie_genre = {
                             'name': movie_selected,
                             'id': movie_name,
                             'genres': ', '.join(movie_genres),
