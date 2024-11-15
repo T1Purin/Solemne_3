@@ -1,7 +1,7 @@
 import streamlit as st
 from Paginas.Main import main
-from Paginas.Pagina_principal import Principal
-from Paginas.Cartelera import Cartelera
+from Paginas.Pagina_principal import principal
+from Paginas.Cartelera import cartelera
 
 
 # Función para gestionar la navegación entre páginas
@@ -12,9 +12,9 @@ def app():
     if st.session_state.page == "Main":
         main()
     elif st.session_state.page == "Personal":
-        Principal()
+        principal()
     elif st.session_state.page == "Cartelera":
-        Cartelera()
+        cartelera()
 
 
 # Ejecutar la aplicación
