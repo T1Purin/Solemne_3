@@ -130,6 +130,8 @@ def main():
 
             # Mostrar el nombre de la película como un botón
             movie_id = row[1]["id"]
+
+            st.write(movie_name)
             
             if col.button(f"*{movie_name}*"):
                 # Buscar los datos relacionados con la película seleccionada
