@@ -16,3 +16,10 @@ def Cartelera():
         # Aquí puedes agregar la funcionalidad para navegar entre películas, agregar más detalles, etc.
     else:
         st.write("No se ha seleccionado un género.")
+
+    # Crear un botón para regresar a la página principal
+    st.write('Dale dos clics al botón para regresar:')
+    if st.button("Regresar a la Página Principal"):
+        st.session_state.page = "Main"  # Cambiar a la página principal
+        st.session_state.selected_movie = None  # Limpiar la película seleccionada
+
