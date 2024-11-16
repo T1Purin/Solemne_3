@@ -1,5 +1,3 @@
-"""EDITANDO EL CODE, NO TOCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAR"""
-
 
 import streamlit as st
 import pandas as pd
@@ -135,6 +133,25 @@ def main():
             movie_id = row[1]["id"]
             
             if col.button(f"*{movie_name}*"):
+
+                movie_id = dm[dm['name'] == movie_name]['id'].values[0]
+
+                # Buscar géneros, actores y la URL del poster para esta película
+                movie_genres = dg[dg['id'] == movie_id]['genre'].unique()
+                movie_actors = da[da['id'] == movie_id]['name'].unique()
+                movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
+
+                # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
+                st.session_state.selected_movie = {
+                    'name': movie_selected,
+                    'id': movie_id,
+                    'genres': ', '.join(movie_genres),
+                    'actors': ', '.join(movie_actors),
+                    'poster_url': movie_poster_url
+                }
+                st.session_state.page = "Personal"
+
+                """
                 # Buscar los datos relacionados con la película seleccionada
                 movie_name = dm[dm['name'] == movie_name]['id'].values[0]
         
@@ -181,3 +198,4 @@ def main():
                     st.write("No se encontraron géneros para esta película.")
                         
                 st.session_state.page = "Cartelera"  # Cambiar a la página personal
+                """
