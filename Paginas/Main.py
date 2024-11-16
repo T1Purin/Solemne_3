@@ -81,10 +81,6 @@ def main():
     if st.button("Buscar"):
         st.session_state.page = "Personal"  # Cambiar a la página personal
 
-
-
-
-    
         #Df con solo los generos
     name_genre = dg_combined["genre"].unique()
 
@@ -95,9 +91,13 @@ def main():
     if genre_selection != "Seleccione un género":  
         genero_movies = dg_combined[dg_combined["genre"] == genre_selection]["id"].unique()
         filtrar_movies = dm[dm["id"].isin(genero_movies)]
-        top10 = filtrar_movies.sort_values(by="rating", ascending=False).head(30)
+        top10 = filtrar_movies.head(10)  #Las 10 peliculas de ese genero
 
-        st.write(f"Top 30 películas de {genre_selection}")
+        st.write(f"Top 10 películas de {genre_selection}")
+
+        # Inicializamos la variable de estado para las películas si no existe
+        if "movie_index" not in st.session_state:
+            st.session_state.movie_index = 0  # Comenzamos desde la primera película
 
        #Esto es para las flechas 
         col1, col2 = st.columns([17, 1])  #Ajustar las flechas
@@ -113,6 +113,7 @@ def main():
             if st.session_state.movie_index < len(top10) - 5:
                 if st.button("→", use_container_width=False):  # Flecha hacia la derecha
                     st.session_state.movie_index += 5  # Avanzar 5 películas
+
 
         # Seleccionar las 5 películas actuales basadas en el índice
         selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
@@ -135,7 +136,7 @@ def main():
             
             if col.button(f"*{movie_name}*"):
                 # Buscar los datos relacionados con la película seleccionada
-                movie_id = dm[dm['name'] == movie_name]['id'].values[0]
+                movie_name = dm[dm['name'] == movie_name]['id'].values[0]
         
                 # Buscar géneros, actores y la URL del póster para esta película
                 movie_genres = dg_combined[dg_combined['id'] == movie_name]['genre'].unique()  # Usar los géneros combinados
