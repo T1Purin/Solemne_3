@@ -95,10 +95,6 @@ def main():
 
         st.write(f"Top 30 películas de {genre_selection}")
 
-        # Inicializamos la variable de estado para las películas si no existe
-        if "movie_index" not in st.session_state:
-            st.session_state.movie_index = 0  # Comenzamos desde la primera película
-
        #Esto es para las flechas 
         col1, col2 = st.columns([17, 1])  #Ajustar las flechas
 
