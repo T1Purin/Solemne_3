@@ -108,15 +108,15 @@ def main():
                 if st.button("←", use_container_width=False, key="boton izquierda 1"):  # Flecha hacia la izquierda
                     st.session_state.movie_index -= 5  #retroceder 5
 
-        #Boton para avanzar 
+        #Boton siguiente
         with col2:
-            if st.session_state.movie_index < len(top30 ) - 5: #solo funciona si estas de la 25 pa atras
-                if st.button("→", use_container_width=False, key="boton derecha 1"):  # Flecha hacia la derecha
+            if st.session_state.movie_index < len(top10) - 5:
+                if st.button("→", use_container_width=False):  # Flecha hacia la derecha
                     st.session_state.movie_index += 5  # Avanzar 5 películas
 
 
         # Seleccionar las 5 películas actuales basadas en el índice
-        selected_movies = top10 .iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
+        selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
 
         #Estos son las columanas de las imagenes de la pelicula
         columns = st.columns(5)  
