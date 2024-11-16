@@ -121,6 +121,7 @@ def main():
         # Mostrar las imágenes y los nombres de las películas
         for index, (col, row) in enumerate(zip(columns, selected_movies.iterrows())):
             movie_name = row[1]["name"]
+            movie_id = row[1]["id"]
             movie_poster_url = dp[dp["id"] == row[1]["id"]]["link"].values
 
             # Mostrar la imagen en la columna respectiva
@@ -132,50 +133,35 @@ def main():
             # Mostrar el nombre de la película como un botón
             movie_id = row[1]["id"]
             
-            if col.button(f"*{movie_name}*"):
-                # Buscar los datos relacionados con la película seleccionada
-                movie_id = dm[dm['name'] == movie_selected]['id'].values[0]
-        
-                # Buscar géneros, actores y la URL del póster para esta película
-                movie_genres = dg_combined[dg_combined['id'] == movie_id]['genre'].unique()  # Usar los géneros combinados
-                movie_actors = da_combined[da_combined['id'] == movie_id]['name'].unique()[:5]  # Usar los actores combinados
+            if col.button(f"*{movie_name}*", key=f"movie_{movie_id}"):
+               
+                # Buscar géneros, actores y otros datos para esta película
+                movie_genres = dg_combined[dg_combined['id'] == movie_id]['genre'].unique()
+                movie_actors = da_combined[da_combined['id'] == movie_id]['name'].unique()[:5]
                 movie_tagline = dm[dm['id'] == movie_id]['tagline'].unique()
                 movie_description = dm[dm['id'] == movie_id]['description'].unique()
                 movie_rating = dm[dm['id'] == movie_id]['rating'].unique()
                 movie_minute = dm[dm['id'] == movie_id]['minute'].unique()
-                movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
         
-                # Verificar que movie_genres no esté vacío antes de intentar concatenar
-                if len(movie_genres) > 0:
-                    # Concatenar las películas de los géneros seleccionados
-                    movie_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in movie_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
-                    
-                    if movie_genres_3.empty:
-                        st.write("No se encontraron películas similares para los géneros seleccionados.")
-                    else:
-                        # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
-                        movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
-        
-                        # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
-                        movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
-        
-                        # Obtener las tres primeras películas por género
-                        movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
-        
-                        # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
-                        st.session_state.selected_movie = {
-                            'name': movie_selected,
-                            'id': movie_id,
-                            'genres': ', '.join(movie_genres),
-                            'actors': ', '.join(movie_actors),
-                            'tagline': movie_tagline,
-                            'description': movie_description,
-                            'rating': movie_rating,
-                            'minute': movie_minute,
-                            'poster_url': movie_poster_url,
-                            'genres_3': movie_genres_3  # Aquí están las películas similares
-                        }
+                # Obtener URL del póster
+                if len(movie_poster_url) > 0:
+                    poster_url = movie_poster_url[0]
                 else:
-                    st.write("No se encontraron géneros para esta película.")
-                        
+                    poster_url = ""
+        
+                # Guardar los datos seleccionados en session_state
+                st.session_state.selected_movie = {
+                    'name': movie_name,
+                    'id': movie_id,
+                    'genres': ', '.join(movie_genres),
+                    'actors': ', '.join(movie_actors),
+                    'tagline': ', '.join(movie_tagline),
+                    'description': ', '.join(movie_description),
+                    'rating': ', '.join(movie_rating),
+                    'minute': ', '.join(movie_minute),
+                    'poster_url': poster_url
+                }
+        
+                # Cambiar a la página de detalles
+                st.session_state.page = "Personal"
                
