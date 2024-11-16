@@ -116,7 +116,7 @@ def main():
 
 
         # Seleccionar las 5 películas actuales basadas en el índice
-        selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
+        selected_movies = top30 .iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
 
         #Estos son las columanas de las imagenes de la pelicula
         columns = st.columns(5)  
