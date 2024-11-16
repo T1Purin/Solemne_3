@@ -137,8 +137,8 @@ def main():
                 movie_id = dm[dm['name'] == movie_name]['id'].values[0]
 
                 # Buscar géneros, actores y la URL del poster para esta película
-                movie_genres = dg[dg['id'] == movie_id]['genre'].unique()
-                movie_actors = da[da['id'] == movie_id]['name'].unique()
+                movie_genres = dg_combined[dg_combined['id'] == movie_id]['genre'].unique()
+                movie_actors = da_combined[da_combined['id'] == movie_id]['name'].unique()
                 movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
 
                 # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
