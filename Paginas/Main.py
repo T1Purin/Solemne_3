@@ -91,9 +91,9 @@ def main():
     if genre_selection != "Seleccione un género":  
         genero_movies = dg_combined[dg_combined["genre"] == genre_selection]["id"].unique()
         filtrar_movies = dm[dm["id"].isin(genero_movies)]
-        top10 = filtrar_movies.head(10)  #Las 10 peliculas de ese genero
+        top10 = filtrar_movies.sort_values(by="rating", ascending=False).head(30)
 
-        st.write(f"Top 10 películas de {genre_selection}")
+        st.write(f"Top 30 películas de {genre_selection}")
 
         # Inicializamos la variable de estado para las películas si no existe
         if "movie_index" not in st.session_state:
@@ -136,7 +136,7 @@ def main():
             
             if col.button(f"*{movie_name}*"):
                 # Buscar los datos relacionados con la película seleccionada
-                movie_name = dm[dm['name'] == movie_name]['id'].values[0]
+                movie_id = dm[dm['name'] == movie_name]['id'].values[0]
         
                 # Buscar géneros, actores y la URL del póster para esta película
                 movie_genres = dg_combined[dg_combined['id'] == movie_name]['genre'].unique()  # Usar los géneros combinados
