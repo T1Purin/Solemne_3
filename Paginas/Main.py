@@ -178,5 +178,4 @@ def main():
                 else:
                     st.write("No se encontraron géneros para esta película.")
                         
-                    st.session_state.page = "Cartelera"  # Cambiar a la página personal
-                
+               
