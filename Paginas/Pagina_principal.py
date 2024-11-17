@@ -53,46 +53,62 @@ def principal():
             elif not review:
                 st.write("Por favor, escribe una reseña.")
 
-        # Mostrar las 4 películas similares (si existen)
-        if 'genres_3' in movie_data and not movie_data['genres_3'].empty:  # Asegúrate de que 'genres_3' existe y no está vacío
-            cols = st.columns(3)  # Cambiar a 3 columnas para las películas similares
+    # Mostrar las 4 películas similares (si existen)
+    if 'genres_3' in movie_data and not movie_data['genres_3'].empty:
+        cols = st.columns(3)  # Usamos 3 columnas para las películas similares
 
-            # Filtrar las películas similares para excluir la película actual
-            filtered_similar_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
+        # Filtrar las películas similares para excluir la película actual
+        filtered_similar_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
 
-            # Asegurarse de que no haya duplicados de las películas ya mostradas
-            displayed_movie_ids = [movie_id]  # Inicializar con la película seleccionada
+        # Asegurarse de que no haya duplicados de las películas ya mostradas
+        displayed_movie_ids = [movie_id]  # Inicializamos con el ID de la película seleccionada
 
-            # Iteramos sobre las columnas para obtener los IDs de las películas que ya están en la barra
-            for col in cols:
-                displayed_movie_ids += [movie['id'] for movie in st.session_state.get('displayed_movies', [])]
+        # Iteramos sobre las columnas para obtener los IDs de las películas que ya están en la barra
+        for col in cols:
+            displayed_movie_ids += [movie['id'] for movie in st.session_state.get('displayed_movies', [])]
 
-            # Excluir cualquier película que ya se haya mostrado previamente
-            filtered_similar_movies = filtered_similar_movies[~filtered_similar_movies['id'].isin(displayed_movie_ids)]
+        # Excluir cualquier película que ya se haya mostrado previamente
+        filtered_similar_movies = filtered_similar_movies[~filtered_similar_movies['id'].isin(displayed_movie_ids)]
 
-            # Si hay menos de 4 películas similares, reemplazamos las faltantes con otras películas
-            if len(filtered_similar_movies) < 3:
-                # Filtramos nuevamente las películas similares para tomar solo las que no sean la película actual
-                other_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
-                other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
+        # Si hay menos de 3 películas similares, reemplazamos las faltantes con otras películas
+        if len(filtered_similar_movies) < 3:
+            other_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
+            other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
 
-                # Añadimos más películas hasta completar 3
-                additional_movies = other_movies.head(3 - len(filtered_similar_movies))
-                filtered_similar_movies = pd.concat([filtered_similar_movies, additional_movies], ignore_index=True)
+            # Añadimos más películas hasta completar 3
+            additional_movies = other_movies.head(3 - len(filtered_similar_movies))
+            filtered_similar_movies = pd.concat([filtered_similar_movies, additional_movies], ignore_index=True)
 
-            # Asegurarse de que haya exactamente 3 películas
-            filtered_similar_movies = filtered_similar_movies.head(3)
+        # Asegurarse de que haya exactamente 3 películas
+        filtered_similar_movies = filtered_similar_movies.head(3)
 
-            # Guardamos los IDs de las películas que vamos a mostrar en la barra para evitar duplicados en futuras consultas
-            st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
+        # Guardamos los IDs de las películas que vamos a mostrar en la barra para evitar duplicados en futuras consultas
+        st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
 
-            # Iterar sobre las películas similares y asignar cada una a una columna
-            for idx, (index, row) in enumerate(filtered_similar_movies.iterrows()):
-                with cols[idx]:  # Usar la columna correspondiente
-                    st.image(row['link'], caption=row['name'], width=220)
-                    # Crear un enlace a la página de detalles de la película seleccionada
-                    movie_link = f"/detalles_pelicula/{row['id']}"  # Asumiendo que 'id' es el identificador único de la película
-                    st.markdown(f"[Ver detalles]({movie_link})")
+        # Iterar sobre las películas similares y asignar cada una a una columna
+        for idx, (index, row) in enumerate(filtered_similar_movies.iterrows()):
+
+            with cols[idx]:  # Usar la columna correspondiente
+                st.image(row['link'], caption=row['name'], width=220)
+                
+                # Crear un botón para cada película que redirige a la página de detalles
+                if st.button(f"{row['name']}", key=f"movie_button_{row['id']}"):
+                    # Guardar la película seleccionada en session_state
+                    st.session_state.selected_movie = {
+                        'name': row['name'],
+                        'id': movie_data['id'],
+                        'genres': movie_data['genres'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+                        'actors': movie_data['actors'],  # Asegúrate de que 'actors' sea una lista o cadena
+                        'tagline': movie_data['tagline'],  # Usa .get() para evitar errores si no existe
+                        'description': movie_data['description'],  # Lo mismo para description
+                        'rating': movie_data['rating'],  # Asegúrate de que 'rating' esté presente
+                        'minute': movie_data['minute'],  # Lo mismo para minute
+                        'poster_url': row['poster_url']
+                    }
+                    
+                    # Cambiar la página a "Personal" (detalles de la película)
+                    st.session_state.page = "DPeliculas"
+
 
             if len(filtered_similar_movies) == 0:
                 st.write("No hay películas similares disponibles.")
@@ -107,3 +123,4 @@ def principal():
     if st.button("Regresar a la Página Principal"):
         st.session_state.page = "Main"  # Cambiar a la página principal
         st.session_state.selected_movie = None  # Limpiar la película seleccionada
+

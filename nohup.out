@@ -1,0 +1,1312 @@
+Usage: streamlit run [OPTIONS] TARGET [ARGS]...
+Try 'streamlit run --help' for help.
+
+Error: Invalid value: File does not exist: Proyeto_3.py
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.1.12:8501
+
+2024-11-17 00:36:02.741 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 8
+    if "selected_movie" in st.session_state:
+IndentationError: unexpected indent
+2024-11-17 00:36:21.705 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 7
+    if "selected_movie" in st.session_state:
+IndentationError: unexpected indent
+2024-11-17 00:36:39.926 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 7
+    if "selected_movie" in st.session_state:
+IndentationError: unexpected indent
+2024-11-17 00:38:39.149 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 7
+    if "selected_movie" in st.session_state:
+IndentationError: unexpected indent
+2024-11-17 00:38:44.622 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 7
+    if "selected_movie" in st.session_state:
+IndentationError: unexpected indent
+2024-11-17 00:42:42.394 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 22, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    main()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 183, in main
+    cartelera_bar()  # Llamar al buscador de géneros
+    ^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 146, in cartelera_bar
+    'id': movie_id,
+          ^^^^^^^^
+NameError: name 'movie_id' is not defined. Did you mean: 'movie_gen'?
+2024-11-17 00:42:46.076 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 22, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    main()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 183, in main
+    cartelera_bar()  # Llamar al buscador de géneros
+    ^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 146, in cartelera_bar
+    'id': movie_id,
+          ^^^^^^^^
+NameError: name 'movie_id' is not defined. Did you mean: 'movie_gen'?
+2024-11-17 00:45:29.529 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ModuleNotFoundError: No module named 'Paginas.Cartelera'
+2024-11-17 00:51:28.034 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 95, in principal
+    st.markdown(f"[Ver detalles]({movie_link})")
+                                  ^^^^^^^^^^
+NameError: name 'movie_link' is not defined. Did you mean: 'movie_id'?
+2024-11-17 00:54:21.846 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 10, in principal
+    movie_id = movie_data['id']  # ID de la película actual
+               ~~~~~~~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2024-11-17 00:54:42.327 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 10, in principal
+    movie_id = movie_data['id']  # ID de la película actual
+               ~~~~~~~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2024-11-17 00:56:11.302 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94
+    st.button(f"[Ver detalles]({row['name']'})")
+                                           ^
+SyntaxError: unterminated string literal (detected at line 94)
+2024-11-17 00:56:22.049 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94
+    st.button(f"[Ver detalles]({movie_id['name']'})")
+                                                ^
+SyntaxError: unterminated string literal (detected at line 94)
+2024-11-17 00:56:25.034 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94
+    st.button(f"[Ver detalles]({movie_id['name']'})")
+                                                ^
+SyntaxError: unterminated string literal (detected at line 94)
+2024-11-17 00:56:35.204 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94
+    st.button(f"[Ver detalles]({movie_data['name']'})")
+                                                  ^
+SyntaxError: unterminated string literal (detected at line 94)
+2024-11-17 00:57:22.791 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94, in principal
+    st.button(f"[Ver detalles]({movie_data['name']})")
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 222, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 872, in _button
+    element_id = compute_and_register_element_id(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-17 00:57:40.287 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94, in principal
+    st.button(f"{movie_data['name']}")
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 222, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 872, in _button
+    element_id = compute_and_register_element_id(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-17 00:57:43.593 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 94, in principal
+    st.button(f"{movie_data['name']}")
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/metrics_util.py", line 410, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 222, in button
+    return self.dg._button(
+           ^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/widgets/button.py", line 872, in _button
+    element_id = compute_and_register_element_id(
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 226, in compute_and_register_element_id
+    _register_element_id(ctx, element_type, element_id)
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/elements/lib/utils.py", line 132, in _register_element_id
+    raise StreamlitDuplicateElementId(element_type)
+streamlit.errors.StreamlitDuplicateElementId: There are multiple `button` elements with the same auto-generated ID. When this element is created, it is assigned an internal ID based on the element type and provided parameters. Multiple elements with the same type and parameters will cause this error.
+
+To fix this error, please pass a unique `key` argument to the `button` element.
+2024-11-17 00:58:42.353 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 114
+    else:
+    ^^^^
+SyntaxError: invalid syntax
+2024-11-17 00:59:18.114 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 57, in <module>
+    if 'genres_3' in movie_data and not movie_data['genres_3'].empty:
+                     ^^^^^^^^^^
+NameError: name 'movie_data' is not defined
+2024-11-17 01:00:39.204 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:01:09.370 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:01:40.891 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'actors'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 100, in principal
+    'actors': ', '.join(row['actors']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'actors'
+2024-11-17 01:04:36.803 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:05:38.732 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:05:38.737 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:05:38.741 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:07:51.580 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:07:51.586 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:07:51.590 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:23.173 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:23.181 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:23.185 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 3 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:29.497 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:29.505 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:08:29.509 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:46.276 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:46.288 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:46.296 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 3 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:51.705 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:51.711 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:51.715 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:09:53.392 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 19, in principal
+    st.write(f'Calificación: {movie_data["rating"][0]}')
+                              ~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: string index out of range
+2024-11-17 01:10:19.114 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:10:19.122 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:10:19.130 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 3 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:19.440 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 107
+    'rating': movie_data('rating'],  # Asegúrate de que 'rating' esté presente
+                                 ^
+SyntaxError: closing parenthesis ']' does not match opening parenthesis '('
+2024-11-17 01:13:39.227 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:39.232 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:39.236 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:42.569 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:42.580 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:13:45.622 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:45.630 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:13:46.012 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:46.019 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:13:46.201 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:46.206 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:13:46.342 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:46.345 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:13:46.487 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:13:46.491 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 103, in principal
+    'genres': movie_data['genre'],  # Ahora usamos 'genre' que parece estar en tu DataFrame
+              ~~~~~~~~~~^^^^^^^^^
+KeyError: 'genre'
+2024-11-17 01:14:24.138 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:24.142 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:24.146 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:26.579 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:26.590 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 109, in principal
+    'poster_url': movie_data['link']
+                  ~~~~~~~~~~^^^^^^^^
+KeyError: 'link'
+2024-11-17 01:14:27.499 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:27.504 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 109, in principal
+    'poster_url': movie_data['link']
+                  ~~~~~~~~~~^^^^^^^^
+KeyError: 'link'
+2024-11-17 01:14:59.803 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:59.810 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:14:59.814 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:15:01.872 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:15:01.878 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:15:01.883 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:15:44.250 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 10, in principal
+    movie_id = movie_data['id']  # ID de la película actual
+               ~~~~~~~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2024-11-17 01:16:09.106 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:16:09.115 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:16:09.119 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 3 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:16:10.529 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:16:10.536 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:16:10.541 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 2 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:22:51.682 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 11, in app
+    main()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 184, in main
+    cartelera_bar()  # Llamar al buscador de géneros
+    ^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 158, in cartelera_bar
+    st.experimental_rerun()  # Fuerza la recarga para reflejar el cambio de página
+    ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'streamlit' has no attribute 'experimental_rerun'. Did you mean: 'experimental_user'?
+2024-11-17 01:23:19.528 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 10, in principal
+    movie_id = movie_data['id']  # ID de la película actual
+               ~~~~~~~~~~^^^^^^
+TypeError: 'NoneType' object is not subscriptable
+2024-11-17 01:25:24.134 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:25:25.272 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:25:25.973 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 18, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 13, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 99, in principal
+    'genres': ', '.join(row['genres']),
+                        ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:27:02.103 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ModuleNotFoundError: No module named 'Paginas.Cartelera'
+2024-11-17 01:27:26.491 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ImportError: cannot import name 'cartelera' from 'Paginas.Cartelera' (/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py). Did you mean: 'Cartelera'?
+2024-11-17 01:35:04.577 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ImportError: cannot import name 'cartelera' from 'Paginas.Cartelera' (/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py). Did you mean: 'Cartelera'?
+2024-11-17 01:35:10.635 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ImportError: cannot import name 'cartelera' from 'Paginas.Cartelera' (/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py). Did you mean: 'Cartelera'?
+2024-11-17 01:35:18.708 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+ImportError: cannot import name 'principal' from 'Paginas.Pagina_principal' (/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py)
+2024-11-17 01:35:32.160 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 4, in <module>
+    from Paginas.Cartelera import cartelera
+ImportError: cannot import name 'cartelera' from 'Paginas.Cartelera' (/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py). Did you mean: 'Cartelera'?
+2024-11-17 01:38:03.717 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 2, in <module>
+    from Paginas.Main import main
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 131
+    )
+    ^
+SyntaxError: unmatched ')'
+2024-11-17 01:38:26.383 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 2, in <module>
+    from Paginas.Main import main
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 131
+    )
+    ^
+SyntaxError: unmatched ')'
+2024-11-17 01:40:16.550 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 12, in app
+    main()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 186, in main
+    cartelera_bar()  # Llamar al buscador de géneros
+    ^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Main.py", line 130, in cartelera_bar
+    st.write(b)
+             ^
+NameError: name 'b' is not defined
+2024-11-17 01:40:41.787 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 16, in app
+    cartelera()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Cartelera.py", line 9, in cartelera
+    cartelera_id = cartelera_data_data['id']  # ID de la película actual
+                   ^^^^^^^^^^^^^^^^^^^
+NameError: name 'cartelera_data_data' is not defined. Did you mean: 'cartelera_data'?
+2024-11-17 01:49:59.768 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:50:35.797 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:50:40.353 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:50:51.551 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:50:53.828 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:51:30.905 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:51:37.705 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 96, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:52:40.988 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:52:40.992 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 98, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:54:17.043 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 0 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:54:17.048 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 98, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:54:28.971 Serialization of dataframe to Arrow table was unsuccessful due to: ("Could not convert 'Comedy' with type str: tried to convert to int64", 'Conversion failed for column 1 with type object'). Applying automatic fixes for column types to make the dataframe Arrow-compatible.
+2024-11-17 01:54:28.983 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'genres'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 21, in <module>
+    app()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 14, in app
+    principal()
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 98, in principal
+    st.write(f"**Géneros**: {', '.join(row['genres'])}")
+                                       ~~~^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1121, in __getitem__
+    return self._get_value(key)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/series.py", line 1237, in _get_value
+    loc = self.index.get_loc(label)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'genres'
+2024-11-17 01:55:35.537 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 100
+    'genres': movie_data['genres']),  # Ahora usamos 'genre' que parece estar en tu DataFrame
+                                  ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{' on line 97
+2024-11-17 01:56:14.639 Uncaught app exception
+Traceback (most recent call last):
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/exec_code.py", line 88, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "/home/Cinnamoroll/Documentos/librerias/lib/python3.12/site-packages/streamlit/runtime/scriptrunner/script_runner.py", line 579, in code_to_exec
+    exec(code, module.__dict__)
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Proyecto_3.py", line 3, in <module>
+    from Paginas.Pagina_principal import principal
+  File "/home/Cinnamoroll/Documentos/Archivos/Python/Github/Solemne_3/Paginas/Pagina_principal.py", line 100
+    'genres': movie_data['genres']),  # Ahora usamos 'genre' que parece estar en tu DataFrame
+                                  ^
+SyntaxError: closing parenthesis ')' does not match opening parenthesis '{' on line 97

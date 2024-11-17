@@ -3,7 +3,6 @@ from Paginas.Main import main
 from Paginas.Pagina_principal import principal
 from Paginas.Cartelera import cartelera
 
-
 # Función para gestionar la navegación entre páginas
 def app():
     if "page" not in st.session_state:
@@ -11,7 +10,7 @@ def app():
 
     if st.session_state.page == "Main":
         main()
-    elif st.session_state.page == "Personal":
+    elif st.session_state.page == "DPeliculas":
         principal()
     elif st.session_state.page == "Cartelera":
         cartelera()
