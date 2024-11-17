@@ -1310,3 +1310,22 @@ Traceback (most recent call last):
     'genres': movie_data['genres']),  # Ahora usamos 'genre' que parece estar en tu DataFrame
                                   ^
 SyntaxError: closing parenthesis ')' does not match opening parenthesis '{' on line 97
+  Stopping...
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.39.92:8501
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8502
+  Network URL: http://192.168.39.92:8502
+
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8503
+  Network URL: http://192.168.39.92:8503
+
