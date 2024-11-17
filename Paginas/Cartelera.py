@@ -5,7 +5,7 @@ def cartelera():
     st.title("Cartelera de Películas por Género")
 
     # Verificar si ya hay películas seleccionadas por género
-    if st.session_state.get("active_option") == "selected_movies_genre" and 'selected_movies_genre' in st.session_state
+    if "selected_movies_genre" in st.session_state:
         genre_movies = st.session_state.selected_movies_genre
 
         # Mostrar las películas por género
