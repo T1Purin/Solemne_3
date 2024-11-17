@@ -23,17 +23,6 @@ def cartelera():
         # Crear la caja para ingresar el nombre y la reseña
         name = st.text_input("Ingresa tu nombre:")
         review = st.text_area("Escribe tu reseña:")
-        
-        #guardar reseña en archivos csv.
-        data = [
-            {'type': 'id', 'value': cartelera_data['id']},
-            {'type': 'name', 'value': name},
-            {'type': 'review', 'value': review}
-        ]
-
-        dr = pd.DataFrame(data)
-        
-        dr.to_csv('Archivos/reseñas.csv', index=False)
 
         # Crear un espacio para mostrar las reseñas anteriores 
         if "reviews" not in st.session_state:
