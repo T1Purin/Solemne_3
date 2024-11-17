@@ -102,6 +102,8 @@ def principal():
         # Asegurarse de que haya exactamente 3 películas
         filtered_similar_movies = filtered_similar_movies.head(3)
 
+        st.write(filtered_similar_movies.columns)
+
         # Guardamos los IDs de las películas que vamos a mostrar en la barra para evitar duplicados en futuras consultas
         st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
 
