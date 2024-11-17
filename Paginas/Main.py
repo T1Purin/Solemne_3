@@ -78,7 +78,6 @@ def main():
     # Crear botones para cambiar a la página personal
     if st.button("Buscar"):
         st.session_state.page = "Personal"  # Cambiar a la página personal
-        st.session_state.active_option = "selected_movie"  # Identificar la opción activa
 
         #Df con solo los generos
     name_genre = dg_combined["genre"].unique()
@@ -122,7 +121,6 @@ def main():
         # Mostrar las imágenes y los nombres de las películas
         for index, (col, row) in enumerate(zip(columns, selected_movies.iterrows())):
             movie_name = row[1]["name"]
-            movie_id = row[1]["id"]
             movie_poster_url = dp[dp["id"] == row[1]["id"]]["link"].values
 
             # Mostrar la imagen en la columna respectiva
@@ -134,18 +132,18 @@ def main():
             # Mostrar el nombre de la película como un botón
             movie_id = row[1]["id"]
             
-            if col.button(f"*{movie_name}*", key=f"movie_{movie_id}"):
+            if col.button(f"*{movie_name}*"):
                 # Buscar los datos relacionados con la película seleccionada
-                
+                movie_name = dm[dm['name'] == movie_name]['id'].values[0]
         
                 # Buscar géneros, actores y la URL del póster para esta película
-                movie_genres = dg_combined[dg_combined['id'] == movie_id]['genre'].unique()  # Usar los géneros combinados
-                movie_actors = da_combined[da_combined['id'] == movie_id['name'].unique()[:5]  # Usar los actores combinados
-                movie_tagline = dm[dm['id'] == movie_id]['tagline'].unique()
-                movie_description = dm[dm['id'] == movie_id['description'].unique()
-                movie_rating = dm[dm['id'] == movie_id]['rating'].unique()
-                movie_minute = dm[dm['id'] == movie_id]['minute'].unique()
-                movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
+                movie_genres = dg_combined[dg_combined['id'] == movie_name]['genre'].unique()  # Usar los géneros combinados
+                movie_actors = da_combined[da_combined['id'] == movie_name]['name'].unique()[:5]  # Usar los actores combinados
+                movie_tagline = dm[dm['id'] == movie_name]['tagline'].unique()
+                movie_description = dm[dm['id'] == movie_name]['description'].unique()
+                movie_rating = dm[dm['id'] == movie_name]['rating'].unique()
+                movie_minute = dm[dm['id'] == movie_name]['minute'].unique()
+                movie_poster_url = dp[dp['id'] == movie_name]['link'].values[0]
         
                 # Verificar que movie_genres no esté vacío antes de intentar concatenar
                 if len(movie_genres) > 0:
@@ -166,8 +164,8 @@ def main():
         
                         # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
                         st.session_state.selected_movie_genre = {
-                            'name': movie_name,
-                            'id': mmovie_id,
+                            'name': movie_selected,
+                            'id': movie_name,
                             'genres': ', '.join(movie_genres),
                             'actors': ', '.join(movie_actors),
                             'tagline': movie_tagline,
@@ -181,5 +179,3 @@ def main():
                     st.write("No se encontraron géneros para esta película.")
                         
                 st.session_state.page = "Cartelera"  # Cambiar a la página personal
-                st.session_state.active_option = "selected_movie_genre"  # Identificar la opción activa
-               
