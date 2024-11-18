@@ -180,20 +180,26 @@ def main():
 
     def graficos():
         
-        # Primer gráfico
+            # Unir los DataFrames por la columna 'id'
         genres_rating_converg = pd.merge(dg_combined, dm, on='id')
-        # Asegurarse de que la columna 'rating' sea numérica
+
+# Asegurarse de que la columna 'rating' sea numérica
         genres_rating_converg['rating'] = pd.to_numeric(genres_rating_converg['rating'], errors='coerce')
 
-        # Eliminar filas con valores NaN en 'rating'
+# Eliminar filas con valores NaN en 'rating'
         genres_rating_converg = genres_rating_converg.dropna(subset=['rating'])
-        genres_prom = genres_rating_converg.sort_values(by='rating', ascending=False)
 
-        # Genera las listas para los géneros y ratings
+# Agrupar por 'genre' y calcular el promedio de 'rating'
+        genres_prom = genres_rating_converg.groupby('genre')['rating'].mean().reset_index()
+
+# Ordenar los géneros por el rating promedio (de mayor a menor)
+        genres_prom = genres_prom.sort_values(by='rating', ascending=False)
+
+# Genera las listas para los géneros y ratings
         genres = genres_prom['genre'].tolist()
         rating = genres_prom['rating'].tolist()
 
-        # Configura tus opciones de gráfico ECharts
+# Configura tus opciones de gráfico ECharts
         gpr = {
             "title": {
                 "text": "Promedio de rating por géneros"
@@ -203,17 +209,16 @@ def main():
                 "type": "category",  # Especifica que es un gráfico de categorías
                 "data": genres  # Asignar directamente la lista de géneros
             },
-            "yAxis": {}
-            ,
+            "yAxis": {},
             "series": [{
                 "name": "Rating",  # Nombre de la serie
-                "type": "bar",  # Tipo de gráfico (línea)
+                "type": "bar",  # Tipo de gráfico (barra)
                 "data": rating  # Los datos para la serie
             }]
         }
 
-        # Renderizar el gráfico
-        st_echarts(options=gpr)
+# Renderizar el gráfico
+st_echarts(options=gpr)
 
     # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
     if 'search_type' not in st.session_state:
@@ -342,3 +347,5 @@ def main():
         st.write("---")
 
     st.subheader('Estadisticas:')
+    graficos()
+
