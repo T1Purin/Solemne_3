@@ -1,28 +1,12 @@
 import streamlit as st
 import pandas as pd
 import random
+from Paginas.Datos import datos
 
 def main():
     st.image("Archivos/logo.png")
 
-    # Archivos de géneros (divididos en múltiples archivos)
-    genre_files = [f'Archivos/genres_part{i}.csv' for i in range(1, 2)]  # Suponiendo que hay 11 archivos de géneros
-
-    # Archivos de actores (58 partes)
-    actor_files = [f'Archivos/actors_part{i}.csv' for i in range(1, 8)]  # Cargar los 58 archivos de actores
-
-    # Cargar y concatenar los archivos de géneros
-    dg_combined = pd.concat([pd.read_csv(file, sep=',', encoding='utf', engine='python', on_bad_lines='skip') for file in genre_files], ignore_index=True)
-
-    # Cargar y concatenar los archivos de actores
-    da_combined = pd.concat([pd.read_csv(file, sep=',', encoding='utf', engine='python', on_bad_lines='skip') for file in actor_files], ignore_index=True)
-
-    # Cargar los CSV de películas y pósters
-    dp_chunks = pd.read_csv('Archivos/posters_part1.csv', sep=',', encoding='utf', engine='python', on_bad_lines='skip', chunksize=25000)
-    dp = next(dp_chunks).fillna('')  # Llenar los valores nulos de los pósters con una cadena vacía
-
-    dm_chunks = pd.read_csv('Archivos/movies_part1.csv', sep=',', encoding='utf', engine='python', on_bad_lines='skip', chunksize=25000)
-    dm = next(dm_chunks).fillna('')  # Llenar los valores nulos de las películas con una cadena vacía
+    st.write(datos())
  
     def select_bar():
         # Crear una lista de nombres de películas para que el usuario elija
