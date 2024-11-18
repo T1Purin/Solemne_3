@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def principal():
-    st.title("Detalles de la Película Seleccionada")
+    st.image("Archivos/logo.png")
 
     # Función para agregar una reseña al archivo CSV
     def agregar_pelicula(id, name, review, archivo='Archivos/reseñas.csv'):
@@ -21,7 +21,45 @@ def principal():
             # Si el archivo no existe, lo creamos con los encabezados
             new_movie_df.to_csv(archivo, mode='w', header=True, index=False)
             print(f"Archivo CSV creado y película '{name}' agregada.")
+
+    # Función para cargar reseñas desde el archivo CSV
+    def cargar_reseñas(archivo='Archivos/reseñas.csv'):
+        try:
+            df = pd.read_csv(archivo)
+            
+            # Limpiar los nombres de las columnas para eliminar espacios extra
+            df.columns = df.columns.str.strip()
+            
+            # Verificar que las columnas esenciales existen
+            if 'id' not in df.columns or 'name' not in df.columns or 'review' not in df.columns:
+                st.error("El archivo CSV no tiene las columnas necesarias: 'id', 'name', 'review'.")
+                return {}
+            
+            # Eliminar filas con valores nulos en 'id', 'name' o 'review'
+            df = df.dropna(subset=['id', 'name', 'review'])
+            
+            # Inicializar un diccionario para almacenar reseñas por id de película
+            reseñas_dict = {}
+            
+            # Iterar sobre las filas del DataFrame y agregar las reseñas al diccionario
+            for _, row in df.iterrows():
+                movie_id = row['id']
+                if movie_id not in reseñas_dict:
+                    reseñas_dict[movie_id] = []
+                reseñas_dict[movie_id].append({'name': row['name'], 'review': row['review']})
+            
+            return reseñas_dict
+        except FileNotFoundError:
+            st.error("El archivo de reseñas no se encuentra.")
+            return {}
+        except Exception as e:
+            st.error(f"Error al cargar las reseñas: {e}")
+            return {}
     
+    # Cargar las reseñas desde el archivo CSV al iniciar
+    if "reviews" not in st.session_state:
+        st.session_state.reviews = cargar_reseñas()  # Cargar reseñas desde el archivo CSV
+
     # Verificar si ya hay una película seleccionada en session_state
     if "selected_movie" in st.session_state:
         movie_data = st.session_state.selected_movie
@@ -34,24 +72,20 @@ def principal():
 
         with col2:
             st.title(movie_data['name'])
-            st.write(f'Calificación: {movie_data["rating"][0]}')
-            st.progress(float(movie_data["rating"][0]) / 5)  # Asegúrate de que rating esté en el formato adecuado (0-5)
             st.caption(f"Géneros: {movie_data['genres']}, Duración: {int(movie_data['minute'][0])} minutos.")
             st.write(movie_data['tagline'][0])
             st.write(f"Actores: {movie_data['actors']}")
             st.write(movie_data['description'][0])
+            st.write(f'Calificación: {movie_data["rating"][0]}')
+            st.progress(float(movie_data["rating"][0]) / 5)  # Asegúrate de que rating esté en el formato adecuado (0-5)
 
         # Crear la caja para ingresar el nombre y la reseña
         name = st.text_input("Ingresa tu nombre:")
         review = st.text_area("Escribe tu reseña:")
-        
-        # Crear un espacio para mostrar las reseñas anteriores
-        if "reviews" not in st.session_state:
-            st.session_state.reviews = {}  # Inicializar un diccionario para almacenar reseñas por película
 
         # Mostrar reseñas ya existentes para esta película
         if movie_id in st.session_state.reviews:
-            st.subheader("Reseñas Anteriores:")
+            st.subheader("Reseñas:")
             for review_entry in st.session_state.reviews[movie_id]:
                 st.write(f"{review_entry['name']}: {review_entry['review']}")
 
@@ -73,6 +107,8 @@ def principal():
                 st.write("Por favor, ingresa tu nombre.")
             elif not review:
                 st.write("Por favor, escribe una reseña.")
+
+        st.subheader('Puede que te interesen...')
 
         # Mostrar las 4 películas similares (si existen)
         if 'genres_3' in movie_data and not movie_data['genres_3'].empty:
@@ -176,12 +212,6 @@ def principal():
                                         'poster_url': movie_poster_url,
                                         'genres_3': movie_genres_3  # Aquí están las películas similares
                                     }
-                            else:
-                                st.write("No se encontraron géneros para esta película.")
-
-            else:
-                st.write("No hay películas similares disponibles.")
-
         else:
             st.write("No se ha seleccionado ninguna película aún.")
 

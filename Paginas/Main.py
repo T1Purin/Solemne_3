@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 
 def main():
-    st.title("Cinnaboxd")
+    st.image("Archivos/logo.png")
 
     # Archivos de géneros (divididos en múltiples archivos)
     genre_files = [f'Archivos/genres_part{i}.csv' for i in range(1, 2)]  # Suponiendo que hay 11 archivos de géneros
@@ -140,7 +140,25 @@ def main():
                     movie_minute = dm[dm['id'] == movie_gen]['minute'].unique()
                     movie_poster_url = dp[dp['id'] == movie_gen]['link'].values[0]
 
-                    # Guardar los detalles de la película seleccionada en session_state
+
+                    # Verificar que movie_genres no esté vacío antes de intentar concatenar
+                    if len(movie_genres) > 0:
+                        # Concatenar las películas de los géneros seleccionados
+                        movie_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in movie_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
+                        
+                        if movie_genres_3.empty:
+                            st.write("No se encontraron películas similares para los géneros seleccionados.")
+                        else:
+                            # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
+                            movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
+
+                            # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
+                            movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
+
+                            # Obtener las tres primeras películas por género
+                            movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
+                            # Guardar los detalles de la película seleccionada en session_state
+                    
                     st.session_state.selected_movie_genre = {
                         'name': movie_name,
                         'id': movie_gen,
@@ -150,11 +168,24 @@ def main():
                         'description': movie_description,
                         'rating': movie_rating,
                         'minute': movie_minute,
-                        'poster_url': movie_poster_url
+                        'poster_url': movie_poster_url,
+                        'genres_3': movie_genres_3  # Aquí están las películas similares
+
                     }
 
                     # Cambiar la página a "DPeliculas" (detalles de la película)
                     st.session_state.page = "Cartelera"
+
+    # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
+    if 'search_type' not in st.session_state:
+        st.session_state.search_type = 'movie'  # Valor por defecto (buscar por película)
+
+    if st.session_state.search_type == 'movie':
+        st.write("Buscador de Películas:")
+        select_bar()  # Llamar al buscador de películas
+    else:
+        st.write("Buscador de Géneros:")
+        cartelera_bar()  # Llamar al buscador de géneros
 
     # Mostrar la pregunta inicial para elegir entre los buscadores
     st.write("¿Qué tipo de buscador prefieres usar?")
@@ -171,13 +202,4 @@ def main():
         if st.button('Buscar por género'):
             st.session_state.search_type = 'genre'  # Guardar la elección en session_state
 
-    # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
-    if 'search_type' not in st.session_state:
-        st.session_state.search_type = 'movie'  # Valor por defecto (buscar por película)
 
-    if st.session_state.search_type == 'movie':
-        st.write("Buscador de Películas:")
-        select_bar()  # Llamar al buscador de películas
-    else:
-        st.write("Buscador de Géneros:")
-        cartelera_bar()  # Llamar al buscador de géneros
