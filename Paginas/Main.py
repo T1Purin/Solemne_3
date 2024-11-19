@@ -347,5 +347,58 @@ st_echarts(options=gpr)
         st.write("---")
 
     st.subheader('Estadisticas:')
-    graficos()
+    
 
+
+    # Suponiendo que ya tienes los DataFrames 'dg_combined' y 'dm' cargados
+    
+    # Unir los DataFrames por la columna 'id'
+    genres_rating_converg = pd.merge(dg_combined, dm, on='id')
+    
+    # Asegurarse de que la columna 'rating' sea numérica
+    genres_rating_converg['rating'] = pd.to_numeric(genres_rating_converg['rating'], errors='coerce')
+    
+    # Eliminar filas con valores NaN en 'rating'
+    genres_rating_converg = genres_rating_converg.dropna(subset=['rating'])
+    
+    # Agrupar por 'genre' y calcular el promedio de 'rating'
+    genres_prom = genres_rating_converg.groupby('genre')['rating'].mean().reset_index()
+    
+    # Ordenar los géneros por el rating promedio (de mayor a menor)
+    genres_prom = genres_prom.sort_values(by='rating', ascending=False)
+    
+    # Limitar a los top 10 géneros
+    genres = genres_prom['genre'].head(10).tolist()
+    rating = genres_prom['rating'].head(10).tolist()
+    
+    # Configurar las opciones para el gráfico de barras en ECharts
+    gpr = {
+        "title": {
+            "text": "Top 10 Géneros vs. Rating Promedio",
+            "subtext": "Promedio de ratings por género",
+        },
+        "tooltip": {
+            "trigger": "axis"
+        },
+        "xAxis": {
+            "type": "category",
+            "data": genres  # Géneros en el eje X
+        },
+        "yAxis": {
+            "type": "value"
+        },
+        "series": [{
+            "name": "Rating Promedio",
+            "type": "bar",
+            "data": rating,
+            "label": {
+                "show": True,
+                "position": "top"
+            }
+        }]
+    }
+    
+    # Mostrar el gráfico en Streamlit
+    st.title("Promedio de Rating por Géneros")
+    st_echarts(options=gpr)
+    
