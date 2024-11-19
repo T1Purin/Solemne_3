@@ -304,3 +304,12 @@ def main():
         st.write("---")
 
     st.subheader('Estadisticas:')
+    
+    #1er grafico (Generos con mayor rating)
+    #Unimos los df
+    Genero_Rating = pd.merge(dg_combined, dm,on="id")
+    #asindex = False 
+    GR_Prom= Genero_Rating.groupby("genre")["rating"].mean()
+    GR_Prom = GR_Prom.sort_values(by="rating")
+    st.title("Promedio de rating por generos")
+    grafico = px.bar(GR_Prom,x= "Genero", y="Rating")
