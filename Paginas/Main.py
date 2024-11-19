@@ -313,3 +313,4 @@ def main():
     GR_Prom = GR_Prom.sort_values(by="rating")
     st.title("Promedio de rating por generos")
     grafico = px.bar(GR_Prom,x= "Genero", y="Rating")
+    st.plotly.chart(grafico)
