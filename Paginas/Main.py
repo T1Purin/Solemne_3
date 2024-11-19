@@ -347,7 +347,7 @@ st_echarts(options=gpr)
         st.write("---")
 
     st.subheader('Estadisticas:')
-<<<<<<< HEAD
+
 
     graficos()
 =======
