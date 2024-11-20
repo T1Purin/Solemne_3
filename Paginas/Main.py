@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-from streamlit_echarts import st_echarts
 import random
 
 def main():
@@ -178,48 +177,6 @@ def main():
                     # Cambiar la página a "DPeliculas" (detalles de la película)
                     st.session_state.page = "Cartelera"
 
-    def graficos():
-        
-            # Unir los DataFrames por la columna 'id'
-        genres_rating_converg = pd.merge(dg_combined, dm, on='id')
-
-# Asegurarse de que la columna 'rating' sea numérica
-        genres_rating_converg['rating'] = pd.to_numeric(genres_rating_converg['rating'], errors='coerce')
-
-# Eliminar filas con valores NaN en 'rating'
-        genres_rating_converg = genres_rating_converg.dropna(subset=['rating'])
-
-# Agrupar por 'genre' y calcular el promedio de 'rating'
-        genres_prom = genres_rating_converg.groupby('genre')['rating'].mean().reset_index()
-
-# Ordenar los géneros por el rating promedio (de mayor a menor)
-        genres_prom = genres_prom.sort_values(by='rating', ascending=False)
-
-# Genera las listas para los géneros y ratings
-        genres = genres_prom['genre'].tolist()
-        rating = genres_prom['rating'].tolist()
-
-# Configura tus opciones de gráfico ECharts
-        gpr = {
-            "title": {
-                "text": "Promedio de rating por géneros"
-            },
-            "tooltip": {},
-            "xAxis": {
-                "type": "category",  # Especifica que es un gráfico de categorías
-                "data": genres  # Asignar directamente la lista de géneros
-            },
-            "yAxis": {},
-            "series": [{
-                "name": "Rating",  # Nombre de la serie
-                "type": "bar",  # Tipo de gráfico (barra)
-                "data": rating  # Los datos para la serie
-            }]
-        }
-
-# Renderizar el gráfico
-st_echarts(options=gpr)
-
     # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
     if 'search_type' not in st.session_state:
         st.session_state.search_type = 'movie'  # Valor por defecto (buscar por película)
@@ -348,8 +305,6 @@ st_echarts(options=gpr)
 
     st.subheader('Estadisticas:')
     
-
-
     # Suponiendo que ya tienes los DataFrames 'dg_combined' y 'dm' cargados
     
     # Unir los DataFrames por la columna 'id'
