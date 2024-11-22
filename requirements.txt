@@ -2,4 +2,5 @@ pandas
 streamlit
 requests
 pyecharts
+
 streamlit-echarts
