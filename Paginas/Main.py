@@ -358,9 +358,9 @@ def main():
     genre_counts['percentage'] = (genre_counts['count'] / total_count) * 100
 
     color_palette = alt.Scale(domain=genre_counts['genre'].tolist(), range=[
-    '#FF6347', '#4682B4', '#32CD32', '#FFD700', '#8A2BE2', '#DC143C', '#FF8C00', 
-    '#20B2AA', '#C71585', '#F08080', '#8A2BE2', '#A52A2A', '#FF4500', '#2E8B57', 
-    '#D2691E', '#C0C0C0'
+    '#FF6347', '#FF4500', '#FFD700', '#FF8C00', '#DC143C', '#C71585', '#F08080', 
+    '#32CD32', '#8A2BE2', '#20B2AA', '#2E8B57', '#4682B4', '#D2691E', '#A52A2A', 
+    '#C0C0C0', '#8A2BE2'
     ])
     # Crear el gráfico de pie con porcentajes
     pie_chart = alt.Chart(genre_counts).mark_arc().encode(
