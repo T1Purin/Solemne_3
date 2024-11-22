@@ -391,4 +391,5 @@ def main():
         title='Número de películas por año'
     )
     
-    line_chart.show()
+    # Mostrar el gráfico en Streamlit
+    st.altair_chart(line_chart, use_container_width=True)
