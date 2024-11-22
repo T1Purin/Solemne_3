@@ -379,7 +379,7 @@ def main():
     dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
 
     # Contar el número de películas por año
-    movie_counts = dm.groupby('year').size().reset_index(name='Cantidad de peliculas')
+    movie_counts = dm.groupby('Año').size().reset_index(name='Cantidad de peliculas')
     
     # Crear el gráfico de líneas con Altair
     line_chart = alt.Chart(movie_counts).mark_line().encode(
