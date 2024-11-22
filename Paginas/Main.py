@@ -332,18 +332,18 @@ def main():
     
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
-
-    if not top_genres.empty:
-        bar = (
-            Bar()
-            .add_xaxis(top_genres['genre'].tolist())
-            .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())
-            .set_global_opts(
-                title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
-                xaxis_opts=opts.AxisOpts(name="Géneros"),
-                yaxis_opts=opts.AxisOpts(name="Rating Promedio"),
-            )
+    
+    # Crear el gráfico de barras con los datos procesados
+    bar = (
+        Bar()
+        .add_xaxis(top_genres['genre'].tolist())  # Géneros
+        .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())  # Ratings
+        .set_global_opts(
+            title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
+            xaxis_opts=opts.AxisOpts(name="Géneros"),
+            yaxis_opts=opts.AxisOpts(name="Rating Promedio"),
         )
-        st_echarts(option=bar.options, height="500px")
-    else:
-        st.write("No se encontraron géneros con rating.")
+    )
+    
+    # Mostrar el gráfico en Streamlit
+    st_echarts(option=bar.options, height="500px")
