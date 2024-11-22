@@ -325,7 +325,7 @@ def main():
     # Crear el gráfico de barras
     bar = (
         Bar()
-        .add_xaxis(top_genres['genres'].tolist())
+        .add_xaxis(top_genres['genre'].tolist())
         .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())
         .set_global_opts(
             title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
