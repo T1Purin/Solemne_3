@@ -1,4 +1,4 @@
 pandas
 streamlit
 requests
-pandas pyecharts
+pyecharts
