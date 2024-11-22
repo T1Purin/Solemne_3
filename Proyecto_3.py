@@ -3,7 +3,7 @@ from Paginas.Main import main
 from Paginas.Pagina_principal import principal
 from Paginas.Cartelera import cartelera
 
-# Función para gestionar la navegación entre páginas
+#gestionar la navegación entre páginas
 def app():
     if "page" not in st.session_state:
         st.session_state.page = "Main"  # Página inicial por defecto
@@ -15,7 +15,5 @@ def app():
     elif st.session_state.page == "Cartelera":
         cartelera()
 
-
-# Ejecutar la aplicación
 if __name__ == "__main__":
     app()
