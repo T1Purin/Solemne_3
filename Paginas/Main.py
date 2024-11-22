@@ -376,16 +376,15 @@ def main():
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
     
-    # Convertir la columna 'date' a formato numérico
     dm['year'] = pd.to_numeric(dm['date'], errors='coerce')
-    
+
     # Contar el número de películas por año
     movie_counts = dm.groupby('year').size().reset_index(name='movie_count')
     
     # Crear el gráfico de líneas con Altair
     line_chart = alt.Chart(movie_counts).mark_line().encode(
-        x='Años:O',  # El eje x es el año 
-        y='Cantidad de peliculsa:Q',  # El eje y es la cantidad de películas 
+        x='year:O',  # El eje x es el año (ordinal)
+        y='movie_count:Q',  # El eje y es la cantidad de películas (cuantitativo)
     ).properties(
         title='Número de películas por año'
     )
