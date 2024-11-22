@@ -361,11 +361,12 @@ def main():
     pie_chart = alt.Chart(genre_counts).mark_arc().encode(
         theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
         color=alt.Color(field="genre", type="nominal"),           # Color por género
-        tooltip=["genre", "percentage:Q"]                         # Mostrar porcentaje al pasar el ratón
+        tooltip=[alt.Tooltip("genre:N", title="Género"),
+                 alt.Tooltip("percentage:Q", format=".1f", title="Porcentaje")]  # Mostrar porcentaje formateado
     ).properties(
-        title="Generos mas repetidos para las peliculas"
+        title="Generos mas usados para las peliculas"
     )
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(pie_chart, use_container_width=True)
-        
+            
