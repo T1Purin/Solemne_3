@@ -374,4 +374,27 @@ def main():
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(pie_chart, use_container_width=True)
-            
+#---------------------------------------------------------------------------
+#Grafico de cantidad de peliculas que salen por año
+
+# Convertir a datatime
+dm['year'] = pd.to_datetime(dm['date'], errors='coerce').dt.year
+
+# Contar el número de películas por año
+movie_counts_by_year = dm['year'].value_counts().reset_index()
+movie_counts_by_year.columns = ['year', 'count']  # Renombrar las columnas
+
+# Ordenar por año para que el gráfico esté en orden cronológico
+movie_counts_by_year = movie_counts_by_year.sort_values('year')
+
+# Crear el gráfico de líneas
+line_chart = alt.Chart(movie_counts_by_year).mark_line().encode(
+    x=alt.X('year:O', title='Año'),
+    y=alt.Y('count:Q', title='Número de películas'),
+    tooltip=['year', 'count']  # Mostrar año y número de películas al pasar el ratón
+).properties(
+    title='Número de Películas Lanzadas por Año'
+)
+
+
+st.altair_chart(line_chart, use_container_width=True)
