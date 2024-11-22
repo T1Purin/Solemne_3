@@ -313,8 +313,8 @@ def main():
     df_merged = pd.merge(dg_combined, dm, on='id')
     
     # Expandir los géneros
-    df_merged['genres'] = df_merged['genres'].str.split(',')
-    df_exploded = df_merged.explode('genres')
+    df_merged['genre'] = df_merged['genre'].str.split(',')
+    df_exploded = df_merged.explode('genre')
     
     # Calcular el promedio de rating por género
     genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
