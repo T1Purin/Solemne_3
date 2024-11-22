@@ -393,17 +393,30 @@ def main():
     st.altair_chart(line_chart, use_container_width=True)
 #------------------------------------------------------------------------
     #duración y rating dispersion
-    # Eliminar alores nulos 
+    # Asegurarnos de que 'rating' y 'minute' son columnas numéricas
+    dm['rating'] = pd.to_numeric(dm['rating'], errors='coerce')
+    dm['minute'] = pd.to_numeric(dm['minute'], errors='coerce')
+    
+    # Eliminar filas con valores nulos
     dm = dm.dropna(subset=['rating', 'minute'])
     
-    # Crear el gráfico de dispersión
-    scatter_plot = alt.Chart(dm).mark_point().encode(
-        x='minute:Q',  # Eje X: duración en minutos
-        y='rating:Q',  # Eje Y: rating (popularidad)
-        color='rating:Q',  # Opcional: color por rating para una mejor visualización
-        size='rating:Q'  # Opcional: tamaño de los puntos según rating
+    # Crear el gráfico de dispersión con mejoras visuales
+    scatter_plot = alt.Chart(dm).mark_point(filled=True, opacity=0.6).encode(
+        x=alt.X('minute:Q', title='Duración (minutos)'),  # Título para el eje X
+        y=alt.Y('rating:Q', title='Popularidad (rating)', scale=alt.Scale(domain=[0, 5])),  # Título para el eje Y
+        color=alt.Color('rating:Q', legend=alt.Legend(title='Rating')),
+        size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[50, 200])),  # Ajustar el tamaño de los puntos
+        tooltip=['minute', 'rating']  # Mostrar detalles al pasar el cursor
     ).properties(
-        title="Relación entre Duración y Popularidad de Películas"
+        title="Relación entre Duración y Popularidad de Películas",
+        width=700,
+        height=400
+    ).configure_axis(
+        labelFontSize=12,
+        titleFontSize=14
+    ).configure_title(
+        fontSize=16,
+        anchor='start'
     )
     
     # Mostrar el gráfico en Streamlit
