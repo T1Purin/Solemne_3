@@ -321,6 +321,7 @@ def main():
     
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+    st.write("Columnas de dg_combined:", dg_combined.columns)
     
     # Crear el gráfico de barras
     bar = (
