@@ -15,5 +15,4 @@ def app():
     elif st.session_state.page == "Cartelera":
         cartelera()
 
-if __name__ == "__main__":
-    app()
+app()
