@@ -376,7 +376,7 @@ def main():
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
     
-    dm['year'] = pd.to_numeric(dm['date'], errors='coerce')
+    dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
 
     # Contar el número de películas por año
     movie_counts = dm.groupby('year').size().reset_index(name='Cantidad de peliculas')
