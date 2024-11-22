@@ -309,7 +309,6 @@ def main():
     st.subheader('Estadisticas:')
     
    # Título de la página
-    st.title("Top 10 Géneros por Rating")
     
     # Unir los DataFrames
     df_merged = pd.merge(dg_combined, dm, on='id')
@@ -385,8 +384,8 @@ def main():
     
     # Crear el gráfico de líneas con Altair
     line_chart = alt.Chart(movie_counts).mark_line().encode(
-        x='year:O',  # El eje x es el año (ordinal)
-        y='movie_count:Q',  # El eje y es la cantidad de películas (cuantitativo)
+        x='Años:O',  # El eje x es el año 
+        y='Cantidad de peliculsa:Q',  # El eje y es la cantidad de películas 
     ).properties(
         title='Número de películas por año'
     )
