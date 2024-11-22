@@ -341,10 +341,10 @@ def main():
     # Mostrar el gráfico en Streamlit
     st.altair_chart(chart, use_container_width=True)
 #----------------------------------------------------------------------------------
-
     #Generos mas repetidos en peliculas
+    # cantidad de veces que aprece cada genero
     genre_counts = dg_combined['genre'].value_counts().reset_index()
-    genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para claridad
+    genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para orden
     
     # Calcular los porcentajes
     total_count = genre_counts['count'].sum()
@@ -355,24 +355,25 @@ def main():
     '#32CD32', '#8A2BE2', '#20B2AA', '#2E8B57', '#4682B4', '#D2691E', '#A52A2A', 
     '#C0C0C0', '#8A2BE2'
     ])
+
     # Crear el gráfico de pie con porcentajes
     pie_chart = alt.Chart(genre_counts).mark_arc().encode(
         theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
         color=alt.Color(field="genre", type="nominal", scale=color_palette),
-        tooltip=[alt.Tooltip("genre:N", title="Género"),
+        tooltip=[alt.Tooltip("genre:N", title="Género"), #Mostrar datos al pasar el mouse
                  alt.Tooltip("percentage:Q", format=".1f", title="Porcentaje")]  # Mostrar porcentaje formateado
     ).properties(
-        title="Generos mas usados para las peliculas"
+        title="Generos mas repetidos en las peliculas"
     )
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(pie_chart, use_container_width=True)
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
-    
+    #Nueva columna, convertiendola a numeros y quitando los val. nulos
     dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
 
-    # Contar el número de películas por año
+    # Contar el número de películas por año y se crea una columna con eso
     movie_counts = dm.groupby('Año').size().reset_index(name='Cantidad de peliculas')
     
     # Crear el gráfico de líneas con Altair
