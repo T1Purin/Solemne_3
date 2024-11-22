@@ -307,6 +307,7 @@ def main():
 
     st.subheader('Estadisticas:')
     
+   # Título de la página
     st.title("Top 10 Géneros por Rating")
     
     # Unir los DataFrames
@@ -315,6 +316,15 @@ def main():
     # Expandir los géneros
     df_merged['genre'] = df_merged['genre'].str.split(',')
     df_exploded = df_merged.explode('genre')
+    
+    # Eliminar filas con valores nulos en 'genre' o 'rating'
+    df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
+    
+    # Asegurarse de que 'rating' sea numérico
+    df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
+    
+    # Eliminar filas con valores no numéricos en 'rating'
+    df_exploded = df_exploded.dropna(subset=['rating'])
     
     # Calcular el promedio de rating por género
     genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
