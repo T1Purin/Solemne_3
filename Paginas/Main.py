@@ -347,3 +347,21 @@ def main():
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(chart, use_container_width=True)
+#----------------------------------------------------------------------------------
+
+    #Generos mas repetidos en peliculas
+    genre_counts = dg_combinedm['genre'].value_counts().reset_index()
+    genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para claridad
+    
+    # Crear el gráfico de pie
+    pie_chart = alt.Chart(genre_counts).mark_arc().encode(
+        theta=alt.Theta(field="count", type="quantitative"),  # Tamaño de las porciones
+        color=alt.Color(field="genre", type="nominal"),      # Color por género
+        tooltip=["genre", "count"]                           # Mostrar género y cantidad al pasar el ratón
+    ).properties(
+        title="Distribución de Géneros en el DataFrame"
+    )
+    
+    # Mostrar el gráfico en Streamlit
+    st.altair_chart(pie_chart, use_container_width=True)
+    
