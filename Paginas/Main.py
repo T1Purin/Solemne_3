@@ -351,4 +351,4 @@ def main():
         .add_yaxis("Rating", [7.8, 8.3, 6.9])
         .set_global_opts(title_opts=opts.TitleOpts(title="Example Bar Chart"))
     )
-    st_echarts(option=bar.dump_options(), height="500px")
+    st_echarts(options=bar.dump_options(), height="500px")
