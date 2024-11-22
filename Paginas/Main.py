@@ -392,3 +392,20 @@ def main():
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(line_chart, use_container_width=True)
+#------------------------------------------------------------------------
+    #duración y rating dispersion
+    # Eliminar alores nulos 
+    dm = dm.dropna(subset=['rating', 'minute'])
+    
+    # Crear el gráfico de dispersión
+    scatter_plot = alt.Chart(dm).mark_point().encode(
+        x='minute:Q',  # Eje X: duración en minutos
+        y='rating:Q',  # Eje Y: rating (popularidad)
+        color='rating:Q',  # Opcional: color por rating para una mejor visualización
+        size='rating:Q'  # Opcional: tamaño de los puntos según rating
+    ).properties(
+        title="Relación entre Duración y Popularidad de Películas"
+    )
+    
+    # Mostrar el gráfico en Streamlit
+    st.altair_chart(scatter_plot, use_container_width=True)
