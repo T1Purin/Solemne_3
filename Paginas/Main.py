@@ -344,8 +344,5 @@ def main():
         )
     )
     
-    # Renderizar el gráfico como HTML
-    html_code = bar.render_embed()
-    
-    # Mostrar el gráfico en Streamlit
-    st.components.v1.html(html_code, height=500)
+    # Mostrar el gráfico en Streamlit usando st_echarts
+    st_echarts(options=bar.dump_options(), height="500px")
