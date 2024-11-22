@@ -1,10 +1,7 @@
 import streamlit as st
 import pandas as pd
 import random
-from streamlit_echarts import st_echarts
-from pyecharts.charts import Bar
-from pyecharts import options as opts
-
+from st_echarts import st_echarts
 def main():
     st.image("Archivos/logo.png")
 
@@ -332,23 +329,29 @@ def main():
     
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+    # Preparar los datos para el gráfico ECharts
+    x_data = top_genres['genre'].tolist()  # Los géneros
+    y_data = top_genres['rating'].tolist()  # Los ratings promedio
     
-    # Crear el gráfico de barras con los datos procesados
-    bar = (
-        Bar()
-        .add_xaxis(top_genres['genre'].tolist())  # Géneros
-        .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())  # Ratings
-        .set_global_opts(
-            title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
-            xaxis_opts=opts.AxisOpts(name="Géneros"),
-            yaxis_opts=opts.AxisOpts(name="Rating Promedio"),
-        )
-    )
-
-    bar = (
-        Bar()
-        .add_xaxis(["Action", "Drama", "Comedy"])
-        .add_yaxis("Rating", [7.8, 8.3, 6.9])
-        .set_global_opts(title_opts=opts.TitleOpts(title="Example Bar Chart"))
-    )
-    st_echarts(options=bar.dump_options(), height="500px")
+    # Crear el formato 'option' para ECharts
+    option = {
+        "xAxis": {
+            "type": "category",
+            "data": x_data  # Usamos los géneros
+        },
+        "yAxis": {
+            "type": "value"
+        },
+        "series": [
+            {
+                "data": y_data,  # Los ratings promedio
+                "type": "bar"  # Gráfico de barras
+            }
+        ]
+    }
+    
+    # Mostrar el gráfico ECharts en Streamlit
+    st.title("Top 10 Géneros por Rating")
+    st_echarts(options=option, height="400px")
+        
+        
