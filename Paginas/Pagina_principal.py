@@ -5,7 +5,7 @@ def principal():
     st.image("Archivos/logo.png")
 
     # Función para agregar una reseña al archivo CSV
-    def agregar_pelicula(id, name, review, archivo='Archivos/reseñas.csv'):
+    def agregar_reseña(id, name, review, archivo='Archivos/reseñas.csv'):
         # Crear un diccionario con los datos de la película
         new_movie = {'id': id, 'name': name, 'review': review}
         
@@ -99,7 +99,7 @@ def principal():
                 st.session_state.reviews[movie_id].append({'name': name, 'review': review})
 
                 # Llamamos a la función para guardar la reseña en el archivo CSV
-                agregar_pelicula(movie_data['id'], name, review)
+                agregar_reseña(movie_data['id'], name, review)
 
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
