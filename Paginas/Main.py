@@ -377,13 +377,13 @@ def main():
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
     
-    # Convertir la columna 'date' a tipo fecha y extraer solo el año
-    dm['year'] = pd.to_datetime(dm['date'], errors='coerce', format='%Y').dt.year
+    # Intentamos extraer solo los valores numéricos del año
+    dm['year'] = pd.to_datetime(dm['date'], errors='coerce', format='%Y', utc=True).dt.year
     
-    # Verificar la conversión de los valores de 'year' (agregar esta línea de depuración)
-    st.write(dm[['date', 'year']].head())  # Muestra las primeras filas de la columna 'date' y 'year'
+    # Aseguramos que solo los valores de año sean válidos
+    dm['year'] = dm['year'].apply(pd.to_numeric, errors='coerce')
     
-    # Filtrar las filas donde 'year' no es NaN
+    # Filtramos los valores nulos o incorrectos
     dm = dm.dropna(subset=['year'])
     
     # Verificar cuántos valores no nulos hay en 'year' después de la limpieza
@@ -393,7 +393,7 @@ def main():
     movie_counts_by_year = dm['year'].value_counts().reset_index()
     movie_counts_by_year.columns = ['year', 'count']  # Renombrar las columnas
     
-    # Verificar los primeros valores de 'movie_counts_by_year' (agregar esta línea de depuración)
+    # Verificar los primeros valores de 'movie_counts_by_year'
     st.write(movie_counts_by_year.head())  # Muestra las primeras filas del DataFrame de conteo
     
     # Ordenar por año para que el gráfico esté en orden cronológico
