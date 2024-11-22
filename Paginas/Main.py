@@ -378,7 +378,7 @@ def main():
     #Grafico de cantidad de peliculas que salen por año
     
     # Asegurarse de que la columna 'date' sea de tipo fecha y extraer el año
-    dm['year'] = pd.to_datetime(dm['date'], errors='coerce', format='%Y').dt.year
+    dm['year'] = pd.to_datetime(dm['date'], errors='coerce').dt.year
     
     # Filtrar si hay datos nulos
     dm = dm.dropna(subset=['year'])
