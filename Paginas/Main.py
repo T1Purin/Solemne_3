@@ -411,6 +411,9 @@ def main():
         title="Relación entre Duración y Popularidad de Películas",
         width=700,
         height=400
+    ).configure_legend(
+    titleFontSize=14,
+    labelFontSize=12
     ).configure_axis(
         labelFontSize=12,
         titleFontSize=14
