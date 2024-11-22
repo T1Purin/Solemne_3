@@ -353,15 +353,19 @@ def main():
     genre_counts = dg_combined['genre'].value_counts().reset_index()
     genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para claridad
     
-    # Crear el gráfico de pie
+    # Calcular los porcentajes
+    total_count = genre_counts['count'].sum()
+    genre_counts['percentage'] = (genre_counts['count'] / total_count) * 100
+    
+    # Crear el gráfico de pie con porcentajes
     pie_chart = alt.Chart(genre_counts).mark_arc().encode(
-        theta=alt.Theta(field="count", type="quantitative"),  # Tamaño de las porciones
-        color=alt.Color(field="genre", type="nominal"),      # Color por género
-        tooltip=["genre", "count"]                           # Mostrar género y cantidad al pasar el ratón
+        theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
+        color=alt.Color(field="genre", type="nominal"),           # Color por género
+        tooltip=["genre", "percentage:Q"]                         # Mostrar porcentaje al pasar el ratón
     ).properties(
-        title="Distribución de Géneros en el DataFrame"
+        title="Generos mas repetidos para las peliculas"
     )
     
     # Mostrar el gráfico en Streamlit
     st.altair_chart(pie_chart, use_container_width=True)
-    
+        
