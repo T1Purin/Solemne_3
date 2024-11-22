@@ -3,6 +3,7 @@ import pandas as pd
 import random
 from pyecharts import options as opts
 from pyecharts.charts import Bar
+import altair as alt
 
 def main():
     st.image("Archivos/logo.png")
@@ -335,16 +336,14 @@ def main():
     x_data = top_genres['genre'].tolist()  # Los géneros
     y_data = top_genres['rating'].tolist()  # Los ratings promedio
     
-   # Crear el gráfico de barras con ECharts
-    bar = Bar()
-    bar.add_xaxis(x_data)
-    bar.add_yaxis("Promedio de Rating", y_data)
-    bar.set_global_opts(
-        title_opts=opts.TitleOpts(title="Top 10 Géneros por Promedio de Rating"),
-        xaxis_opts=opts.AxisOpts(name="Género"),
-        yaxis_opts=opts.AxisOpts(name="Promedio de Rating")
+    # Crear el gráfico con Altair
+    chart = alt.Chart(top_genres).mark_bar().encode(
+        x=alt.X('genre', sort='-y'),
+        y='rating',
+        color='genre'
+    ).properties(
+        title='Top 10 Géneros por Promedio de Rating'
     )
     
     # Mostrar el gráfico en Streamlit
-    st_echarts(options=bar.dump_options())
-            
+    st.altair_chart(chart, use_container_width=True)
