@@ -334,7 +334,7 @@ def main():
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
     
     # Crear el gráfico de barras con los datos procesados
-    bar = (
+     bar = (
         Bar()
         .add_xaxis(top_genres['genre'].tolist())  # Géneros
         .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())  # Ratings
@@ -346,5 +346,4 @@ def main():
     )
     
     # Mostrar el gráfico en Streamlit
-    #st_echarts(option=bar.options)
-    st.write(bar.options)
+    st_echarts(option=bar.dump_options(), height="500px")
