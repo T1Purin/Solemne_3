@@ -317,7 +317,7 @@ def main():
     df_exploded = df_merged.explode('genres')
     
     # Calcular el promedio de rating por género
-    genre_ratings = df_exploded.groupby('genres')['rating'].mean().reset_index()
+    genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
     
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
