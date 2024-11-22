@@ -377,15 +377,24 @@ def main():
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
     
-    # Asegurarse de que la columna 'date' sea de tipo fecha y extraer el año
-    dm['year'] = pd.to_datetime(dm['date'], errors='coerce').dt.year
+    # Convertir la columna 'date' a tipo fecha y extraer solo el año
+    dm['year'] = pd.to_datetime(dm['date'], errors='coerce', format='%Y').dt.year
     
-    # Filtrar si hay datos nulos
+    # Verificar la conversión de los valores de 'year' (agregar esta línea de depuración)
+    st.write(dm[['date', 'year']].head())  # Muestra las primeras filas de la columna 'date' y 'year'
+    
+    # Filtrar las filas donde 'year' no es NaN
     dm = dm.dropna(subset=['year'])
+    
+    # Verificar cuántos valores no nulos hay en 'year' después de la limpieza
+    st.write(f"Total de valores válidos en 'year': {dm['year'].nunique()}")
     
     # Contar el número de películas por año
     movie_counts_by_year = dm['year'].value_counts().reset_index()
     movie_counts_by_year.columns = ['year', 'count']  # Renombrar las columnas
+    
+    # Verificar los primeros valores de 'movie_counts_by_year' (agregar esta línea de depuración)
+    st.write(movie_counts_by_year.head())  # Muestra las primeras filas del DataFrame de conteo
     
     # Ordenar por año para que el gráfico esté en orden cronológico
     movie_counts_by_year = movie_counts_by_year.sort_values('year')
@@ -399,5 +408,5 @@ def main():
         title='Número de Películas Lanzadas por Año'
     )
     
-    
+    # Mostrar el gráfico en Streamlit
     st.altair_chart(line_chart, use_container_width=True)
