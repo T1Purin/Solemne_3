@@ -309,8 +309,8 @@ def main():
     # Título de la página
     st.title("Top 10 Géneros por Rating")
     
-    # Unir los DataFrames
-    df_merged = pd.merge(dg_combined, dm, on='id')
+    
     st.write("Columnas de dg_combined:", dg_combined.columns)
+
     
     
