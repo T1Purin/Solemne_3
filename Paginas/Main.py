@@ -308,22 +308,21 @@ def main():
 
     st.subheader('Estadisticas:')
     
-   # Título de la página
     
-    # Unir los DataFrames
+    # Unir los df de gneros y movies que tiene el rating
     df_merged = pd.merge(dg_combined, dm, on='id')
     
-    # Expandir los géneros
+    # Expandir los géneros e unimos
     df_merged['genre'] = df_merged['genre'].str.split(',')
     df_exploded = df_merged.explode('genre')
     
-    # Eliminar filas con valores nulos en 'genre' o 'rating'
+    # Eliminar valiores nulos
     df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
     
-    # Asegurarse de que 'rating' sea numérico
+    # Rating a numerico en caso de
     df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
     
-    # Eliminar filas con valores no numéricos en 'rating'
+    # Eliminar valores nulos
     df_exploded = df_exploded.dropna(subset=['rating'])
     
     # Calcular el promedio de rating por género
@@ -331,17 +330,14 @@ def main():
     
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
-    # Preparar los datos para el gráfico ECharts
-    x_data = top_genres['genre'].tolist()  # Los géneros
-    y_data = top_genres['rating'].tolist()  # Los ratings promedio
-    
+   
     # Crear el gráfico con Altair
     chart = alt.Chart(top_genres).mark_bar().encode(
         x=alt.X('genre', sort='-y'),
-        y='rating',
-        color='genre'
+        y='Calificacion',
+        color='Generos'
     ).properties(
-        title='Top 10 Géneros por Promedio de Rating'
+        title='Top 10 Géneros con mayor calificacion'
     )
     
     # Mostrar el gráfico en Streamlit
