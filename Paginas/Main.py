@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import random
+from streamlit_echarts import st_echarts
 from pyecharts.charts import Bar
 from pyecharts import options as opts
 
