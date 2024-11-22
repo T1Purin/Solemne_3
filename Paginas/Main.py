@@ -332,8 +332,8 @@ def main():
     # Crear el gráfico con Altair
     chart = alt.Chart(top_genres).mark_bar().encode(
         x=alt.X('genre', sort='-y'),
-        y='Calificacion',
-        color='Generos'
+        y='rating',
+        color='genre'
     ).properties(
         title='Top 10 Géneros con mayor calificacion'
     )
