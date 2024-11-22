@@ -308,4 +308,4 @@ def main():
     st.subheader('Estadisticas:')
     # Título de la página
     st.title("Top 10 Géneros por Rating")
-    st.write("Columnas de dg_combined:", dg_combined.columns)
+    
