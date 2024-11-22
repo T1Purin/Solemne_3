@@ -1,5 +1,5 @@
 pandas
 streamlit
 requests
-pyecharts
-streamlit-echarts
+pyecharts>=5.0.0
+streamlit-echarts>=0.1.1
