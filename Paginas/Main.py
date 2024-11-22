@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import random
+from pyecharts.charts import Bar
+from pyecharts import options as opts
 
 def main():
     st.image("Archivos/logo.png")
@@ -303,4 +305,37 @@ def main():
         st.write(f"_{user_review}_")
         st.write("---")
 
-    st.subheader('Estadisticas:')
+    st.subheader('Estadisticas:'):
+    # Título de la página
+    st.title("Top 10 Géneros por Rating")
+    
+    # Unir los DataFrames
+    df_merged = pd.merge(dg_combined, dm, on='id')
+    
+    # Expandir los géneros
+    df_merged['genres'] = df_merged['genres'].str.split(',')
+    df_exploded = df_merged.explode('genres')
+    
+    # Calcular el promedio de rating por género
+    genre_ratings = df_exploded.groupby('genres')['rating'].mean().reset_index()
+    
+    # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
+    top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+    
+    # Crear el gráfico de barras
+    bar = (
+        Bar()
+        .add_xaxis(top_genres['genres'].tolist())
+        .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())
+        .set_global_opts(
+            title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
+            xaxis_opts=opts.AxisOpts(name="Géneros"),
+            yaxis_opts=opts.AxisOpts(name="Rating Promedio"),
+        )
+    )
+    
+    # Renderizar el gráfico como HTML
+    html_code = bar.render_embed()
+    
+    # Mostrar el gráfico en Streamlit
+    st.components.v1.html(html_code, height=500)
