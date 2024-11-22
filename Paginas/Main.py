@@ -332,20 +332,20 @@ def main():
     # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
     top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
     
-    # Crear el gráfico de barras
+   # Crear el gráfico de barras con pyecharts
     bar = (
         Bar()
         .add_xaxis(top_genres['genre'].tolist())
-        .add_yaxis("Promedio de Rating", top_genres['rating'].tolist())
+        .add_yaxis("Promedio de Rating", top_genres['rating'].round(2).tolist())
         .set_global_opts(
-            title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating"),
-            xaxis_opts=opts.AxisOpts(name="Géneros"),
+            title_opts=opts.TitleOpts(title="Top 10 Géneros por Rating", pos_left="center"),
+            xaxis_opts=opts.AxisOpts(name="Géneros", axislabel_opts={"rotate": 45}),
             yaxis_opts=opts.AxisOpts(name="Rating Promedio"),
+            toolbox_opts=opts.ToolboxOpts(),
+            legend_opts=opts.LegendOpts(is_show=False),
         )
     )
     
-    # Renderizar el gráfico como HTML
-    html_code = bar.render_embed()
-    
-    # Mostrar el gráfico en Streamlit
-    st.components.v1.html(html_code, height=500)
+    # Mostrar el gráfico directamente en Streamlit
+    st_pyecharts = st.components.v1.html
+    st_pyecharts(bar.render_notebook(), height=500)
