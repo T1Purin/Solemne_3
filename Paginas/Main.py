@@ -377,36 +377,18 @@ def main():
 #---------------------------------------------------------------------------
     #Grafico de cantidad de peliculas que salen por año
     
-    # Limpiar la columna 'date' para quitar espacios y caracteres no visibles
-    dm['date'] = dm['date'].str.strip()  # Eliminar espacios al principio y al final
-    
-    # Convertir la columna 'date' a tipo numérico, forzando que solo se mantengan los valores válidos
+    # Convertir la columna 'date' a formato numérico
     dm['year'] = pd.to_numeric(dm['date'], errors='coerce')
     
-    # Eliminar las filas con valores nulos en 'year' (si hubiera algún valor no convertible)
-    dm = dm.dropna(subset=['year'])
-    
-    # Verificar cuántos valores válidos hay en 'year'
-    st.write(f"Total de valores válidos en 'year': {dm['year'].nunique()}")
-    
     # Contar el número de películas por año
-    movie_counts_by_year = dm['year'].value_counts().reset_index()
-    movie_counts_by_year.columns = ['year', 'count']  # Renombrar las columnas
+    movie_counts = dm.groupby('year').size().reset_index(name='movie_count')
     
-    # Verificar los primeros valores de 'movie_counts_by_year'
-    st.write(movie_counts_by_year.head())
-    
-    # Ordenar por año para que el gráfico esté en orden cronológico
-    movie_counts_by_year = movie_counts_by_year.sort_values('year')
-    
-    # Crear el gráfico de líneas
-    line_chart = alt.Chart(movie_counts_by_year).mark_line().encode(
-        x=alt.X('year:O', title='Año'),
-        y=alt.Y('count:Q', title='Número de películas'),
-        tooltip=['year', 'count']  # Mostrar año y número de películas al pasar el ratón
+    # Crear el gráfico de líneas con Altair
+    line_chart = alt.Chart(movie_counts).mark_line().encode(
+        x='year:O',  # El eje x es el año (ordinal)
+        y='movie_count:Q',  # El eje y es la cantidad de películas (cuantitativo)
     ).properties(
-        title='Número de Películas Lanzadas por Año'
+        title='Número de películas por año'
     )
     
-    # Mostrar el gráfico en Streamlit
-    st.altair_chart(line_chart, use_container_width=True)
+    line_chart.show()
