@@ -403,7 +403,7 @@ def main():
     # Crear el gráfico de dispersión con mejoras visuales
     scatter_plot = alt.Chart(dm).mark_point(filled=True, opacity=0.6).encode(
         x=alt.X('minute:Q', title='Duración (minutos)'),  # Título para el eje X
-        y=alt.Y('rating:Q', title='Popularidad (rating)',  # Título para el eje Y
+        y=alt.Y('rating:Q', title='Popularidad (rating)'),  # Título para el eje Y
         color=alt.Color('rating:Q', legend=alt.Legend(title='Rating')),
         size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[50, 200])),  # Ajustar el tamaño de los puntos
         tooltip=['minute', 'rating']  # Mostrar detalles al pasar el cursor
