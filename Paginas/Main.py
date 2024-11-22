@@ -400,20 +400,17 @@ def main():
     # Eliminar filas con valores nulos
     dm = dm.dropna(subset=['rating', 'minute'])
     
-    # Crear el gráfico de dispersión con puntos más pequeños y sin leyenda de 'rating' para el tamaño
+    # Crear el gráfico de dispersión con mejoras visuales
     scatter_plot = alt.Chart(dm).mark_point(filled=True, opacity=0.6).encode(
         x=alt.X('minute:Q', title='Duración (minutos)'),  # Título para el eje X
-        y=alt.Y('rating:Q', title='Popularidad (rating)', scale=alt.Scale(domain=[0, 5])),  # Título para el eje Y
-        
-        size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[30, 60])),  # Puntos más pequeños
+        y=alt.Y('rating:Q', title='Popularidad (rating)',  # Título para el eje Y
+        color=alt.Color('rating:Q', legend=alt.Legend(title='Rating')),
+        size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[50, 200])),  # Ajustar el tamaño de los puntos
         tooltip=['minute', 'rating']  # Mostrar detalles al pasar el cursor
     ).properties(
         title="Relación entre Duración y Popularidad de Películas",
         width=700,
         height=400
-    ).configure_legend(
-        titleFontSize=14,
-        labelFontSize=12
     ).configure_axis(
         labelFontSize=12,
         titleFontSize=14
