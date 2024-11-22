@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import random
-from pyecharts import options as opts
-from pyecharts.charts import Bar
 import altair as alt
 
 def main():
