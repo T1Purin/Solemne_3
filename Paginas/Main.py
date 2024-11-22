@@ -346,4 +346,4 @@ def main():
     )
     
     # Mostrar el gráfico en Streamlit
-    st_echarts(option=bar.options, height="500px")
+    st_echarts(option=bar.options)
