@@ -356,11 +356,16 @@ def main():
     # Calcular los porcentajes
     total_count = genre_counts['count'].sum()
     genre_counts['percentage'] = (genre_counts['count'] / total_count) * 100
-    
+
+    color_palette = alt.Scale(domain=genre_counts['genre'].tolist(), range=[
+    '#FF6347', '#4682B4', '#32CD32', '#FFD700', '#8A2BE2', '#DC143C', '#FF8C00', 
+    '#20B2AA', '#C71585', '#F08080', '#8A2BE2', '#A52A2A', '#FF4500', '#2E8B57', 
+    '#D2691E', '#C0C0C0'
+    ])
     # Crear el gráfico de pie con porcentajes
     pie_chart = alt.Chart(genre_counts).mark_arc().encode(
         theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
-        color=alt.Color(field="genre", type="nominal"),           # Color por género
+        color=alt.Color(field="genre", type="nominal", scale=color_palette),
         tooltip=[alt.Tooltip("genre:N", title="Género"),
                  alt.Tooltip("percentage:Q", format=".1f", title="Porcentaje")]  # Mostrar porcentaje formateado
     ).properties(
