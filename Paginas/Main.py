@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
 import random
-from st_echarts import st_echarts
+from pyecharts import options as opts
+from pyecharts.charts import Bar
 
 def main():
     st.image("Archivos/logo.png")
