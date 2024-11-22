@@ -350,7 +350,7 @@ def main():
 #----------------------------------------------------------------------------------
 
     #Generos mas repetidos en peliculas
-    genre_counts = dg_combinedm['genre'].value_counts().reset_index()
+    genre_counts = dg_combined['genre'].value_counts().reset_index()
     genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para claridad
     
     # Crear el gráfico de pie
