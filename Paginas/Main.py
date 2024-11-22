@@ -95,7 +95,7 @@ def main():
 
             st.write(f"Top 10 películas de {genre_selection}")
 
-            # Inicializar el índice de películas en la sesión si no existe
+            # Inicializar el indice de peliculña en la sesión si no existe
             if "movie_index" not in st.session_state:
                 st.session_state.movie_index = 0
 
@@ -226,7 +226,7 @@ def main():
                     # Obtener el id de la película
                     movie_gen = row[1]["id"]
                     
-                    # Buscar los detalles de la película
+                    # Buscar los detalles de la peli
                     movie_genres = dg_combined[dg_combined['id'] == movie_gen]['genre'].unique()
                     movie_actors = da_combined[da_combined['id'] == movie_gen]['name'].unique()[:5]
                     movie_tagline = dm[dm['id'] == movie_gen]['tagline'].unique()
