@@ -6,7 +6,7 @@ from Paginas.Cartelera import cartelera
 #Gestionar la navegación entre páginas
 def app():
     if 'page' not session_state:
-    st.session_state.page = "Main"
+        st.session_state.page = "Main"
 
     if st.session_state.page == "Main":
         main()
