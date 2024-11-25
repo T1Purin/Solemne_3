@@ -1,8 +1,25 @@
 import streamlit as st
 import pandas as pd
+import subprocess
 
 def principal():
     st.image("Archivos/logo.png")
+
+    # Función para hacer commit y push usando subprocess
+    def git_commit_and_push():
+        try:
+            # Ejecutar el comando para agregar los cambios al repositorio de Git
+            subprocess.run(["git", "add", "Archivos/reseñas.csv"], check=True)
+            
+            # Crear un commit con el mensaje adecuado
+            subprocess.run(['git', 'commit', '-m', 'Añadir nueva reseña'], check=True)
+            
+            # Subir los cambios al repositorio remoto
+            subprocess.run(["git", "push", "origin", "main"], check=True)
+            
+            st.success("Reseña guardada y cambios subidos al repositorio de Git correctamente.")
+        except subprocess.CalledProcessError as e:
+            st.error(f"Hubo un error al intentar realizar el commit y push: {e}")
 
     # Función para agregar una reseña al archivo CSV
     def agregar_reseña(id, name, review, archivo='Archivos/reseñas.csv'):
@@ -100,6 +117,8 @@ def principal():
 
                 # Llamamos a la función para guardar la reseña en el archivo CSV
                 agregar_reseña(movie_data['id'], name, review)
+
+                git_commit_and_push()
 
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
