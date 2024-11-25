@@ -344,12 +344,17 @@ def main():
         st.altair_chart(line_chart, use_container_width=True)
         
     #------------------------------------------------------------------------
-        
-        # Unir los DataFrames de géneros y películas con rating
+       # Unir los DataFrames de géneros y películas con rating
         df_merged = pd.merge(dg_combined, dm, on='id')
         
         # Eliminar valores nulos de 'genre' y 'rating'
         df_merged = df_merged.dropna(subset=['genre', 'rating'])
+        
+        # Asegurarse de que 'rating' sea numérico
+        df_merged['rating'] = pd.to_numeric(df_merged['rating'], errors='coerce')
+        
+        # Eliminar valores nulos en 'rating' después de convertir
+        df_merged = df_merged.dropna(subset=['rating'])
         
         # Crear el selectbox para seleccionar un género
         selected_genre = st.selectbox('Selecciona un género', df_merged['genre'].unique())
