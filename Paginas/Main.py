@@ -384,7 +384,7 @@ def main():
         
         # Crear un widget de selección de géneros
         generos_disponibles = ['Todos'] + sorted(df_merged['genre'].unique())
-        genero_seleccionado = st.sidebar.selectbox("Selecciona un género", generos_disponibles)
+        genero_seleccionado = st.selectbox("Selecciona un género", generos_disponibles)
         
         # Filtrar el DataFrame según el género seleccionado
         if genero_seleccionado == 'Todos':
