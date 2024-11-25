@@ -306,7 +306,7 @@ def main():
 
     opcion = st.sidebar.selectbox("Seleccione una sección:",
     ("Página principal", "Gráficos"))
-    elif opcion == "Gráficos":
+    if opcion == "Gráficos":
         st.subheader('Estadisticas:')
         
         
