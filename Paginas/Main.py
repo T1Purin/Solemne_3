@@ -345,39 +345,35 @@ def main():
         
     #------------------------------------------------------------------------
         
-        
-        # Unir los df de gneros y movies que tiene el rating
+        # Unir los DataFrames de géneros y películas con rating
         df_merged = pd.merge(dg_combined, dm, on='id')
         
-        # Expandir los géneros e unimos
-        df_merged['genre'] = df_merged['genre'].str.split(',')
-        df_exploded = df_merged.explode('genre')
+        # Eliminar valores nulos de 'genre' y 'rating'
+        df_merged = df_merged.dropna(subset=['genre', 'rating'])
         
-        # Eliminar valiores nulos
-        df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
+        # Crear el selectbox para seleccionar un género
+        selected_genre = st.selectbox('Selecciona un género', df_merged['genre'].unique())
         
-        # Rating a numerico en caso de
-        df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
+        # Filtrar las películas por género
+        df_genre = df_merged[df_merged['genre'] == selected_genre]
         
-        # Eliminar valores nulos
-        df_exploded = df_exploded.dropna(subset=['rating'])
+        # Ordenar por rating y seleccionar las 10 mejores películas
+        top_movies = df_genre.sort_values(by='rating', ascending=False).head(10)
         
-        # Calcular el promedio de rating por género
-        genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
+        # Mostrar las 10 mejores películas
+        st.write(f"Top 10 Películas en el género: {selected_genre}")
+        st.dataframe(top_movies[['name', 'rating']])
         
-        # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
-        top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
-       
         # Crear el gráfico con Altair
-        chart = alt.Chart(top_genres).mark_bar().encode(
-            x=alt.X('genre', sort='-y' ,title='Géneros'),
-            y=alt.Y('rating', title='Calificación Promedio'),
-            color='genre'
+        chart = alt.Chart(top_movies).mark_bar().encode(
+            x=alt.X('name', sort='-y', title='Películas'),
+            y=alt.Y('rating', title='Calificación'),
+            color='name'
         ).properties(
-            title='Top 10 Géneros con mayor calificacion'
+            title=f'Top 10 Películas de {selected_genre} con mayor calificación'
         )
         
-        # Mostrar el gráfico en Streamlit
+        # Mostrar el gráfico
         st.altair_chart(chart, use_container_width=True)
                         
     #----------------------------------------------------------------------------------
