@@ -346,9 +346,13 @@ def main():
     #------------------------------------------------------------------------
         
         
-
-        # Unir los DataFrames por la columna 'id'
         df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
+        
+        # Asegurarse de que la columna 'rating' sea numérica y no tenga valores nulos
+        df_merged['rating'] = pd.to_numeric(df_merged['rating'], errors='coerce')
+        
+        # Eliminar filas con valores nulos en la columna 'rating' o 'genre'
+        df_merged = df_merged.dropna(subset=['rating', 'genre'])
         
         # Calcular el promedio de rating por género
         genre_ratings = df_merged.groupby('genre')['rating'].mean().reset_index()
@@ -387,7 +391,7 @@ def main():
             # Mostrar las mejores 10 películas en una tabla
             st.write(f"**Mejores películas del género {selected_genre}:**")
             st.table(top_peliculas[['name', 'rating']])
-                
+                        
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
         # cantidad de veces que aprece cada genero
