@@ -3,10 +3,12 @@ from Paginas.Main import main
 from Paginas.Pagina_principal import principal
 from Paginas.Cartelera import cartelera
 
-st.session_state.page = "Main"
 
 #Gestionar la navegación entre páginas
 def app():
+
+    if "page" not in st.session_state:
+        st.session_state.page = "Main"
 
     if st.session_state.page == "Main":
         st.set_page_config(layout="wide")
