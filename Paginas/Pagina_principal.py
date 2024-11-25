@@ -21,6 +21,21 @@ def principal():
         except subprocess.CalledProcessError as e:
             st.error(f"Hubo un error al intentar realizar el commit y push: {e}")
 
+        # Función para verificar si hay cambios pendientes y hacer commit y push
+    def verificar_y_commitear():
+        try:
+            # Verificar si hay cambios pendientes en el repositorio
+            result = subprocess.run(['git', 'status', '--porcelain'], stdout=subprocess.PIPE)
+            changes = result.stdout.decode('utf-8')
+
+            if changes:
+                # Si hay cambios, hacer commit y push
+                git_commit_and_push()
+            else:
+                st.info("No hay cambios pendientes para subir al repositorio.")
+        except subprocess.CalledProcessError as e:
+            st.error(f"Hubo un error al verificar el estado del repositorio: {e}")
+
     # Función para agregar una reseña al archivo CSV
     def agregar_reseña(id, name, review, archivo='Archivos/reseñas.csv'):
         # Crear un diccionario con los datos de la película
@@ -119,6 +134,8 @@ def principal():
                 agregar_reseña(movie_data['id'], name, review)
 
                 git_commit_and_push()
+
+                verificar_y_commitear()
 
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
