@@ -346,6 +346,7 @@ def main():
     #------------------------------------------------------------------------
         
         
+        # Unir los DataFrames por la columna 'id'
         df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
         
         # Asegurarse de que la columna 'rating' sea numérica y no tenga valores nulos
@@ -391,6 +392,9 @@ def main():
             # Mostrar las mejores 10 películas en una tabla
             st.write(f"**Mejores películas del género {selected_genre}:**")
             st.table(top_peliculas[['name', 'rating']])
+        
+        else:
+            st.write("Selecciona un género del gráfico para ver las mejores películas.")
                         
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
