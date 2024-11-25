@@ -178,143 +178,140 @@ def main():
                     # Cambiar la página a "DPeliculas" (detalles de la película)
                     st.session_state.page = "Cartelera"
 
-    # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
-    if 'search_type' not in st.session_state:
-        st.session_state.search_type = 'movie'  # Valor por defecto (buscar por película)
+    opcion = st.sidebar.selectbox(
+    "Seleccione una sección:",
+    ("Página principal", "Gráficos")
 
-    if st.session_state.search_type == 'movie':
-        st.write("Buscador de Películas:")
-        select_bar()  # Llamar al buscador de películas
-    else:
-        st.write("Buscador de Géneros:")
-        cartelera_bar()  # Llamar al buscador de géneros
-
-    # Mostrar la pregunta inicial para elegir entre los buscadores
-    st.write("¿Qué tipo de buscador prefieres usar?")
-
-    # Crear una fila de columnas para los botones (los botones estarán en una línea horizontal)
-    col1, col2 = st.columns([1, 1])  # Crear 2 columnas con igual tamaño
-
-    # Colocar un botón en cada columna
-    with col1:
-        if st.button('Buscar por película'):
-            st.session_state.search_type = 'movie'  # Guardar la elección en session_state
-
-    with col2:
-        if st.button('Buscar por género'):
-            st.session_state.search_type = 'genre'  # Guardar la elección en session_state
-
-    st.subheader('Tendencias del momento')
-
-    # Seleccionar 4 películas aleatorias
-    random_movies = dm.sample(n=4, random_state=42)  # Selecciona 4 películas aleatorias
-
-    # Crear las columnas para mostrar las películas de manera lateral
-    columns = st.columns(4)  # Crear 4 columnas
-
-    # Mostrar las películas en las 4 columnas
-    for i, (col, row) in enumerate(zip(columns, random_movies.iterrows())):
-        movie_name = row[1]['name']
-        movie_poster_url = dp[dp['id'] == row[1]['id']]['link'].values
+    if opcion == "Página principal":
         
-        # Mostrar el nombre de la película y el póster en cada columna
-        with col:
-            if len(movie_poster_url) > 0:
-                st.image(movie_poster_url[0], width=140)
-                a = col.button(movie_name)
-                if a:
-                    # Obtener el id de la película
-                    movie_gen = row[1]["id"]
-                    
-                    # Buscar los detalles de la peli
-                    movie_genres = dg_combined[dg_combined['id'] == movie_gen]['genre'].unique()
-                    movie_actors = da_combined[da_combined['id'] == movie_gen]['name'].unique()[:5]
-                    movie_tagline = dm[dm['id'] == movie_gen]['tagline'].unique()
-                    movie_description = dm[dm['id'] == movie_gen]['description'].unique()
-                    movie_rating = dm[dm['id'] == movie_gen]['rating'].unique()
-                    movie_minute = dm[dm['id'] == movie_gen]['minute'].unique()
-                    movie_poster_url = dp[dp['id'] == movie_gen]['link'].values[0]
-
-
-                    # Verificar que movie_genres no esté vacío antes de intentar concatenar
-                    if len(movie_genres) > 0:
-                        # Concatenar las películas de los géneros seleccionados
-                        movie_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in movie_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
-                        
-                        if movie_genres_3.empty:
-                            st.write("No se encontraron películas similares para los géneros seleccionados.")
-                        else:
-                            # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
-                            movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
-
-                            # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
-                            movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
-
-                            # Obtener las tres primeras películas por género
-                            movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
-                            # Guardar los detalles de la película seleccionada en session_state
-                    
-                    st.session_state.selected_movie_genre = {
-                        'name': movie_name,
-                        'id': movie_gen,
-                        'genres': ', '.join(movie_genres),
-                        'actors': ', '.join(movie_actors),
-                        'tagline': movie_tagline,
-                        'description': movie_description,
-                        'rating': movie_rating,
-                        'minute': movie_minute,
-                        'poster_url': movie_poster_url,
-                        'genres_3': movie_genres_3  # Aquí están las películas similares
-
-                    }
-
-                    # Cambiar la página a "DPeliculas" (detalles de la película)
-                    st.session_state.page = "Cartelera"
-
-            else:
-                st.write("Póster no disponible")
-
-    st.subheader('Escribe y comparte tus reseñas: ')
-
-    # Cargar las reseñas desde el archivo CSV (que contiene el 'movie_id' en lugar de 'movie_name')
-    reseñas_df = pd.read_csv('Archivos/reseñas.csv', encoding='utf')
-
-    # Limpiar los nombres de las columnas eliminando espacios extra
-    reseñas_df.columns = reseñas_df.columns.str.strip()
-
-    random_reviews = reseñas_df.sample(n=3)  # Selecciona 4 reseñas aleatorias
-
-    # Mostrar las reseñas
-    for index, review in random_reviews.iterrows():
-        movie_id = review['id']  # Aquí tienes el ID de la película
-        user_name = review['name']  # Nombre del usuario
-        user_review = review['review']  # Contenido de la reseña
-
-        # Buscar el nombre de la película a partir del 'movie_id'
-        movie_name = dm[dm['id'] == movie_id]['name'].values
-
-        if len(movie_name) > 0:
-            movie_name = movie_name[0]  # Obtener el nombre de la película (debe haber un único valor)
+        # Verificar cuál opción fue elegida y mostrar el buscador correspondiente
+        if 'search_type' not in st.session_state:
+            st.session_state.search_type = 'movie'  # Valor por defecto (buscar por película)
+    
+        if st.session_state.search_type == 'movie':
+            st.write("Buscador de Películas:")
+            select_bar()  # Llamar al buscador de películas
         else:
-            movie_name = "Película no encontrada"  # En caso de que no se encuentre el ID
-
-        # Mostrar la información de la reseña
-        st.write(f"### {movie_name}")
-        st.write(f"**Reseña por:** {user_name}")
-        st.write(f"_{user_review}_")
-        st.write("---")
-
-    graficos = st.sidebar.button("Gráficos")
-
-    # Si el botón se presiona, redirige a la página de gráficos
-    if graficos:
-        st.experimental_set_query_params(pagina="graficos")
+            st.write("Buscador de Géneros:")
+            cartelera_bar()  # Llamar al buscador de géneros
     
-    # Detectar si estamos en la página de gráficos
-    query_params = st.experimental_get_query_params()
-    pagina = query_params.get("pagina", ["inicio"])[0]
+        # Mostrar la pregunta inicial para elegir entre los buscadores
+        st.write("¿Qué tipo de buscador prefieres usar?")
     
-    if pagina == "graficos":
+        # Crear una fila de columnas para los botones (los botones estarán en una línea horizontal)
+        col1, col2 = st.columns([1, 1])  # Crear 2 columnas con igual tamaño
+    
+        # Colocar un botón en cada columna
+        with col1:
+            if st.button('Buscar por película'):
+                st.session_state.search_type = 'movie'  # Guardar la elección en session_state
+    
+        with col2:
+            if st.button('Buscar por género'):
+                st.session_state.search_type = 'genre'  # Guardar la elección en session_state
+    
+        st.subheader('Tendencias del momento')
+    
+        # Seleccionar 4 películas aleatorias
+        random_movies = dm.sample(n=4, random_state=42)  # Selecciona 4 películas aleatorias
+    
+        # Crear las columnas para mostrar las películas de manera lateral
+        columns = st.columns(4)  # Crear 4 columnas
+    
+        # Mostrar las películas en las 4 columnas
+        for i, (col, row) in enumerate(zip(columns, random_movies.iterrows())):
+            movie_name = row[1]['name']
+            movie_poster_url = dp[dp['id'] == row[1]['id']]['link'].values
+            
+            # Mostrar el nombre de la película y el póster en cada columna
+            with col:
+                if len(movie_poster_url) > 0:
+                    st.image(movie_poster_url[0], width=140)
+                    a = col.button(movie_name)
+                    if a:
+                        # Obtener el id de la película
+                        movie_gen = row[1]["id"]
+                        
+                        # Buscar los detalles de la peli
+                        movie_genres = dg_combined[dg_combined['id'] == movie_gen]['genre'].unique()
+                        movie_actors = da_combined[da_combined['id'] == movie_gen]['name'].unique()[:5]
+                        movie_tagline = dm[dm['id'] == movie_gen]['tagline'].unique()
+                        movie_description = dm[dm['id'] == movie_gen]['description'].unique()
+                        movie_rating = dm[dm['id'] == movie_gen]['rating'].unique()
+                        movie_minute = dm[dm['id'] == movie_gen]['minute'].unique()
+                        movie_poster_url = dp[dp['id'] == movie_gen]['link'].values[0]
+    
+    
+                        # Verificar que movie_genres no esté vacío antes de intentar concatenar
+                        if len(movie_genres) > 0:
+                            # Concatenar las películas de los géneros seleccionados
+                            movie_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in movie_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
+                            
+                            if movie_genres_3.empty:
+                                st.write("No se encontraron películas similares para los géneros seleccionados.")
+                            else:
+                                # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
+                                movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
+    
+                                # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
+                                movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
+    
+                                # Obtener las tres primeras películas por género
+                                movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
+                                # Guardar los detalles de la película seleccionada en session_state
+                        
+                        st.session_state.selected_movie_genre = {
+                            'name': movie_name,
+                            'id': movie_gen,
+                            'genres': ', '.join(movie_genres),
+                            'actors': ', '.join(movie_actors),
+                            'tagline': movie_tagline,
+                            'description': movie_description,
+                            'rating': movie_rating,
+                            'minute': movie_minute,
+                            'poster_url': movie_poster_url,
+                            'genres_3': movie_genres_3  # Aquí están las películas similares
+    
+                        }
+    
+                        # Cambiar la página a "DPeliculas" (detalles de la película)
+                        st.session_state.page = "Cartelera"
+    
+                else:
+                    st.write("Póster no disponible")
+    
+        st.subheader('Escribe y comparte tus reseñas: ')
+    
+        # Cargar las reseñas desde el archivo CSV (que contiene el 'movie_id' en lugar de 'movie_name')
+        reseñas_df = pd.read_csv('Archivos/reseñas.csv', encoding='utf')
+    
+        # Limpiar los nombres de las columnas eliminando espacios extra
+        reseñas_df.columns = reseñas_df.columns.str.strip()
+    
+        random_reviews = reseñas_df.sample(n=3)  # Selecciona 4 reseñas aleatorias
+    
+        # Mostrar las reseñas
+        for index, review in random_reviews.iterrows():
+            movie_id = review['id']  # Aquí tienes el ID de la película
+            user_name = review['name']  # Nombre del usuario
+            user_review = review['review']  # Contenido de la reseña
+    
+            # Buscar el nombre de la película a partir del 'movie_id'
+            movie_name = dm[dm['id'] == movie_id]['name'].values
+    
+            if len(movie_name) > 0:
+                movie_name = movie_name[0]  # Obtener el nombre de la película (debe haber un único valor)
+            else:
+                movie_name = "Película no encontrada"  # En caso de que no se encuentre el ID
+    
+            # Mostrar la información de la reseña
+            st.write(f"### {movie_name}")
+            st.write(f"**Reseña por:** {user_name}")
+            st.write(f"_{user_review}_")
+            st.write("---")
+
+    
+    elif opcion == "Gráficos":
         
         
         # Unir los df de gneros y movies que tiene el rating
