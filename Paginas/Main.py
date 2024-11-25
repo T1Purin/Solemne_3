@@ -379,7 +379,6 @@ def main():
         
         # Mostrar el gráfico en Streamlit
         st.altair_chart(chart, use_container_width=True)
-Como hacer este grafico mas interactivo, sabiendo que mi pagina se trata de un cartelera de peliculas estilo letterboxd, y esta esta seccion de graficos
                         
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
