@@ -344,16 +344,16 @@ def main():
         st.altair_chart(line_chart, use_container_width=True)
         
     #------------------------------------------------------------------------
-       # Unir los DataFrames de géneros y películas con rating
+       # Unir los df y que coincidan con id
         df_merged = pd.merge(dg_combined, dm, on='id')
         
-        # Eliminar valores nulos de 'genre' y 'rating'
+        # Eliminar valores nulos
         df_merged = df_merged.dropna(subset=['genre', 'rating'])
         
-        # Asegurarse de que 'rating' sea numérico
+        # Convertir en valores numericos 
         df_merged['rating'] = pd.to_numeric(df_merged['rating'], errors='coerce')
         
-        # Eliminar valores nulos en 'rating' después de convertir
+        # Eliminar valores nulos  después de convertir
         df_merged = df_merged.dropna(subset=['rating'])
         
         # Calcular el promedio de rating por género
@@ -362,7 +362,7 @@ def main():
         # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
         top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
         
-        # Crear el selectbox para seleccionar un género
+        # Selectbox para seleccionar un genreo
         selected_genre = st.selectbox('Selecciona un género', ['Todos'] + list(top_genres['genre'].unique()))
         
         # Si se selecciona un género, mostrar las mejores películas de ese género
@@ -377,7 +377,7 @@ def main():
             # Ordenar por rating y seleccionar las 10 mejores películas
             top_movies = df_genre.sort_values(by='rating', ascending=False).head(10)
             
-            # Crear el gráfico con Altair para las películas del género seleccionado
+            # Crear el gráfico con las películas del género seleccionado
             chart_data = top_movies
             title = f'Top 10 Películas de {selected_genre} con mayor calificación'
         
@@ -390,7 +390,6 @@ def main():
             title=title
         )
         
-        # Mostrar el gráfico
         st.altair_chart(chart, use_container_width=True)
                         
     #----------------------------------------------------------------------------------
