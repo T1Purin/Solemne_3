@@ -376,19 +376,28 @@ def main():
         # Mostrar el gráfico en Streamlit
         st.altair_chart(pie_chart, use_container_width=True)
     #---------------------------------------------------------------------------
-        #Grafico de cantidad de peliculas que salen por año
-        #Nueva columna, convertiendola a numeros y quitando los val. nulos
-        dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
-    
-        # Contar el número de películas por año y se crea una columna con eso
-        movie_counts = dm.groupby('Año').size().reset_index(name='Cantidad de peliculas')
+        # Convertir la columna 'date' a numérica (año)
+        dg_combined['Año'] = pd.to_numeric(dg_combined['date'], errors='coerce')
+        
+        # Crear un widget de selección de géneros
+        generos_disponibles = ['Todos'] + sorted(dg_combined['genre'].unique())
+        genero_seleccionado = st.sidebar.selectbox("Selecciona un género", generos_disponibles)
+        
+        # Filtrar el DataFrame según el género seleccionado
+        if genero_seleccionado == 'Todos':
+            df_filtrado = dg_combined
+        else:
+            df_filtrado = dg_combined[dg_combined['genre'] == genero_seleccionado]
+        
+        # Contar el número de películas por año
+        movie_counts = df_filtrado.groupby('Año').size().reset_index(name='Cantidad de peliculas')
         
         # Crear el gráfico de líneas con Altair
         line_chart = alt.Chart(movie_counts).mark_line().encode(
             x='Año:O',  # El eje x es el año 
             y='Cantidad de peliculas:Q',  # El eje y es la cantidad de películas 
         ).properties(
-            title='Número de películas por año'
+            title=f'Número de películas por año ({genero_seleccionado})'
         )
         
         # Mostrar el gráfico en Streamlit
