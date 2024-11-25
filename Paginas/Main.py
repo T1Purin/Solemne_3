@@ -376,8 +376,6 @@ def main():
         # Mostrar el gráfico en Streamlit
         st.altair_chart(pie_chart, use_container_width=True)
     #---------------------------------------------------------------------------
-        dg_combined = pd.DataFrame(data_dg_combined)
-
         # Combinar los DataFrames utilizando 'id' como clave
         df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
         
