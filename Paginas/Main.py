@@ -346,55 +346,40 @@ def main():
     #------------------------------------------------------------------------
         
         
-        # Unir los DataFrames por la columna 'id'
-        df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
+        # Unir los df de gneros y movies que tiene el rating
+        df_merged = pd.merge(dg_combined, dm, on='id')
         
-        # Asegurarse de que la columna 'rating' sea numérica y no tenga valores nulos
-        df_merged['rating'] = pd.to_numeric(df_merged['rating'], errors='coerce')
+        # Expandir los géneros e unimos
+        df_merged['genre'] = df_merged['genre'].str.split(',')
+        df_exploded = df_merged.explode('genre')
         
-        # Eliminar filas con valores nulos en la columna 'rating' o 'genre'
-        df_merged = df_merged.dropna(subset=['rating', 'genre'])
+        # Eliminar valiores nulos
+        df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
+        
+        # Rating a numerico en caso de
+        df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
+        
+        # Eliminar valores nulos
+        df_exploded = df_exploded.dropna(subset=['rating'])
         
         # Calcular el promedio de rating por género
-        genre_ratings = df_merged.groupby('genre')['rating'].mean().reset_index()
+        genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
         
-        # Crear una selección para el gráfico (interactividad)
-        selection = alt.selection_single(fields=['genre'], bind='legend', name='Selecciona', empty='none')
-        
+        # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
+        top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+       
         # Crear el gráfico con Altair
-        chart = alt.Chart(genre_ratings).mark_bar().encode(
-            x=alt.X('genre', sort='-y', title='Géneros'),
+        chart = alt.Chart(top_genres).mark_bar().encode(
+            x=alt.X('genre', sort='-y' ,title='Géneros'),
             y=alt.Y('rating', title='Calificación Promedio'),
-            color='genre',
-            tooltip=['genre', 'rating']
-        ).add_selection(
-            selection
+            color='genre'
         ).properties(
-            title='Top 10 Géneros con mayor calificación',
-            width=700,
-            height=400
+            title='Top 10 Géneros con mayor calificacion'
         )
         
         # Mostrar el gráfico en Streamlit
         st.altair_chart(chart, use_container_width=True)
-        
-        # Capturar el valor seleccionado en el gráfico
-        selected_genre = selection.value
-        
-        # Verificar si hay un género seleccionado
-        if selected_genre:
-            # Filtrar las películas por el género seleccionado
-            peliculas_genero = df_merged[df_merged['genre'] == selected_genre]
-        
-            # Ordenar las películas por rating y seleccionar las 10 mejores
-            top_peliculas = peliculas_genero.sort_values(by='rating', ascending=False).head(10)
-        
-            # Mostrar las mejores 10 películas en una tabla
-            st.write(f"**Mejores películas del género {selected_genre}:**")
-            st.table(top_peliculas[['name', 'rating']])
-        
-        else:
-            st.write("Selecciona un género del gráfico para ver las mejores películas.")
+Como hacer este grafico mas interactivo, sabiendo que mi pagina se trata de un cartelera de peliculas estilo letterboxd, y esta esta seccion de graficos
                         
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
