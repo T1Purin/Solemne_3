@@ -304,11 +304,17 @@ def main():
         st.write(f"_{user_review}_")
         st.write("---")
 
-    opcion = st.sidebar.selectbox("Seleccione una sección:",
-    ("Página principal", "Gráficos"))
-    if opcion == "Gráficos":
-        st.subheader('Estadisticas:')
-        
+    graficos = st.sidebar.button("Gráficos")
+
+    # Si el botón se presiona, redirige a la página de gráficos
+    if graficos:
+        st.experimental_set_query_params(pagina="graficos")
+    
+    # Detectar si estamos en la página de gráficos
+    query_params = st.experimental_get_query_params()
+    pagina = query_params.get("pagina", ["inicio"])[0]
+    
+    if pagina == "graficos":
         
         
         # Unir los df de gneros y movies que tiene el rating
