@@ -5,37 +5,6 @@ import subprocess
 def principal():
     st.image("Archivos/logo.png")
 
-    # Función para hacer commit y push usando subprocess
-    def git_commit_and_push():
-        try:
-            # Ejecutar el comando para agregar los cambios al repositorio de Git
-            subprocess.run(["git", "add", "Archivos/reseñas.csv"], check=True)
-            
-            # Crear un commit con el mensaje adecuado
-            subprocess.run(['git', 'commit', '-m', 'Añadir nueva reseña'], check=True)
-            
-            # Subir los cambios al repositorio remoto
-            subprocess.run(["git", "push", "origin", "main"], check=True)
-            
-            st.success("Reseña guardada y cambios subidos al repositorio de Git correctamente.")
-        except subprocess.CalledProcessError as e:
-            st.error(f"Hubo un error al intentar realizar el commit y push: {e}")
-
-        # Función para verificar si hay cambios pendientes y hacer commit y push
-    def verificar_y_commitear():
-        try:
-            # Verificar si hay cambios pendientes en el repositorio
-            result = subprocess.run(['git', 'status', '--porcelain'], stdout=subprocess.PIPE)
-            changes = result.stdout.decode('utf-8')
-
-            if changes:
-                # Si hay cambios, hacer commit y push
-                git_commit_and_push()
-            else:
-                st.info("No hay cambios pendientes para subir al repositorio.")
-        except subprocess.CalledProcessError as e:
-            st.error(f"Hubo un error al verificar el estado del repositorio: {e}")
-
     # Función para agregar una reseña al archivo CSV
     def agregar_reseña(id, name, review, archivo='Archivos/reseñas.csv'):
         # Crear un diccionario con los datos de la película
