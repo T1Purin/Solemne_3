@@ -344,7 +344,7 @@ def main():
         st.altair_chart(line_chart, use_container_width=True)
         
     #------------------------------------------------------------------------
-       # Unir los DataFrames de géneros y películas con rating
+        # Unir los DataFrames de géneros y películas con rating
         df_merged = pd.merge(dg_combined, dm, on='id')
         
         # Eliminar valores nulos de 'genre' y 'rating'
@@ -356,21 +356,35 @@ def main():
         # Eliminar valores nulos en 'rating' después de convertir
         df_merged = df_merged.dropna(subset=['rating'])
         
-        # Crear el selectbox para seleccionar un género
-        selected_genre = st.selectbox('Selecciona un género', df_merged['genre'].unique())
+        # Calcular el promedio de rating por género
+        genre_ratings = df_merged.groupby('genre')['rating'].mean().reset_index()
         
-        # Filtrar las películas por género
+        # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
+        top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+        
+        # Crear el gráfico con Altair para los géneros
+        genre_chart = alt.Chart(top_genres).mark_bar().encode(
+            x=alt.X('genre', sort='-y', title='Géneros'),
+            y=alt.Y('rating', title='Calificación Promedio'),
+            color='genre'
+        ).properties(
+            title='Top 10 Géneros con mayor calificación'
+        )
+        
+        # Mostrar el gráfico de géneros
+        st.altair_chart(genre_chart, use_container_width=True)
+        
+        # Crear el selectbox para seleccionar un género
+        selected_genre = st.selectbox('Selecciona un género', top_genres['genre'].unique())
+        
+        # Filtrar las películas del género seleccionado
         df_genre = df_merged[df_merged['genre'] == selected_genre]
         
         # Ordenar por rating y seleccionar las 10 mejores películas
         top_movies = df_genre.sort_values(by='rating', ascending=False).head(10)
         
-        # Mostrar las 10 mejores películas
-        st.write(f"Top 10 Películas en el género: {selected_genre}")
-        st.dataframe(top_movies[['name', 'rating']])
-        
-        # Crear el gráfico con Altair
-        chart = alt.Chart(top_movies).mark_bar().encode(
+        # Crear el gráfico con Altair para las películas del género seleccionado
+        movie_chart = alt.Chart(top_movies).mark_bar().encode(
             x=alt.X('name', sort='-y', title='Películas'),
             y=alt.Y('rating', title='Calificación'),
             color='name'
@@ -378,8 +392,8 @@ def main():
             title=f'Top 10 Películas de {selected_genre} con mayor calificación'
         )
         
-        # Mostrar el gráfico
-        st.altair_chart(chart, use_container_width=True)
+        # Mostrar el gráfico de películas
+        st.altair_chart(movie_chart, use_container_width=True)
                         
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
