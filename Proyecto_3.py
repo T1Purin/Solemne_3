@@ -13,7 +13,7 @@ def app():
         st.session_state.page = "Main"
 
     if st.session_state.page == "Main":
-        pass
+        main()
     elif st.session_state.page == "DPeliculas":
         pass
     elif st.session_state.page == "Cartelera":
