@@ -102,10 +102,6 @@ def principal():
                 # Llamamos a la función para guardar la reseña en el archivo CSV
                 agregar_reseña(movie_data['id'], name, review)
 
-                git_commit_and_push()
-
-                verificar_y_commitear()
-
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
             elif not name:
