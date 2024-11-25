@@ -346,7 +346,6 @@ def main():
     #------------------------------------------------------------------------
         
         
-        dg_combined = pd.DataFrame(data_dg_combined)
 
         # Unir los DataFrames por la columna 'id'
         df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
