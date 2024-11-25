@@ -304,118 +304,122 @@ def main():
         st.write(f"_{user_review}_")
         st.write("---")
 
-    st.subheader('Estadisticas:')
+    opcion = st.sidebar.selectbox("Seleccione una sección:",
+    ("Página principal", "Gráficos"))
+    elif opcion == "Gráficos":
+        st.subheader('Estadisticas:')
+        
+        
+        
+        # Unir los df de gneros y movies que tiene el rating
+        df_merged = pd.merge(dg_combined, dm, on='id')
+        
+        # Expandir los géneros e unimos
+        df_merged['genre'] = df_merged['genre'].str.split(',')
+        df_exploded = df_merged.explode('genre')
+        
+        # Eliminar valiores nulos
+        df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
+        
+        # Rating a numerico en caso de
+        df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
+        
+        # Eliminar valores nulos
+        df_exploded = df_exploded.dropna(subset=['rating'])
+        
+        # Calcular el promedio de rating por género
+        genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
+        
+        # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
+        top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
+       
+        # Crear el gráfico con Altair
+        chart = alt.Chart(top_genres).mark_bar().encode(
+            x=alt.X('genre', sort='-y' ,title='Géneros'),
+            y=alt.Y('rating', title='Calificación Promedio'),
+            color='genre'
+        ).properties(
+            title='Top 10 Géneros con mayor calificacion'
+        )
+        
+        # Mostrar el gráfico en Streamlit
+        st.altair_chart(chart, use_container_width=True)
+    #----------------------------------------------------------------------------------
+        #Generos mas repetidos en peliculas
+        # cantidad de veces que aprece cada genero
+        genre_counts = dg_combined['genre'].value_counts().reset_index()
+        genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para orden
+        
+        # Calcular los porcentajes
+        total_count = genre_counts['count'].sum()
+        genre_counts['percentage'] = (genre_counts['count'] / total_count) * 100
     
+        color_palette = alt.Scale(domain=genre_counts['genre'].tolist(), range=[
+        '#FF6347', '#FF4500', '#FFD700', '#FF8C00', '#DC143C', '#C71585', '#F08080', 
+        '#32CD32', '#8A2BE2', '#20B2AA', '#2E8B57', '#4682B4', '#D2691E', '#A52A2A', 
+        '#C0C0C0', '#8A2BE2'
+        ])
     
-    # Unir los df de gneros y movies que tiene el rating
-    df_merged = pd.merge(dg_combined, dm, on='id')
+        # Crear el gráfico de pie con porcentajes
+        pie_chart = alt.Chart(genre_counts).mark_arc().encode(
+            theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
+            color=alt.Color(field="genre", type="nominal", scale=color_palette),
+            tooltip=[alt.Tooltip("genre:N", title="Género"), #Mostrar datos al pasar el mouse
+                     alt.Tooltip("percentage:Q", format=".1f", title="Porcentaje")]  # Mostrar porcentaje formateado
+        ).properties(
+            title="Generos mas repetidos en las peliculas"
+        )
+        
+        # Mostrar el gráfico en Streamlit
+        st.altair_chart(pie_chart, use_container_width=True)
+    #---------------------------------------------------------------------------
+        #Grafico de cantidad de peliculas que salen por año
+        #Nueva columna, convertiendola a numeros y quitando los val. nulos
+        dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
     
-    # Expandir los géneros e unimos
-    df_merged['genre'] = df_merged['genre'].str.split(',')
-    df_exploded = df_merged.explode('genre')
-    
-    # Eliminar valiores nulos
-    df_exploded = df_exploded.dropna(subset=['genre', 'rating'])
-    
-    # Rating a numerico en caso de
-    df_exploded['rating'] = pd.to_numeric(df_exploded['rating'], errors='coerce')
-    
-    # Eliminar valores nulos
-    df_exploded = df_exploded.dropna(subset=['rating'])
-    
-    # Calcular el promedio de rating por género
-    genre_ratings = df_exploded.groupby('genre')['rating'].mean().reset_index()
-    
-    # Ordenar por promedio de rating y seleccionar los 10 mejores géneros
-    top_genres = genre_ratings.sort_values(by='rating', ascending=False).head(10)
-   
-    # Crear el gráfico con Altair
-    chart = alt.Chart(top_genres).mark_bar().encode(
-        x=alt.X('genre', sort='-y' ,title='Géneros'),
-        y=alt.Y('rating', title='Calificación Promedio'),
-        color='genre'
-    ).properties(
-        title='Top 10 Géneros con mayor calificacion'
-    )
-    
-    # Mostrar el gráfico en Streamlit
-    st.altair_chart(chart, use_container_width=True)
-#----------------------------------------------------------------------------------
-    #Generos mas repetidos en peliculas
-    # cantidad de veces que aprece cada genero
-    genre_counts = dg_combined['genre'].value_counts().reset_index()
-    genre_counts.columns = ['genre', 'count']  # Renombrar las columnas para orden
-    
-    # Calcular los porcentajes
-    total_count = genre_counts['count'].sum()
-    genre_counts['percentage'] = (genre_counts['count'] / total_count) * 100
-
-    color_palette = alt.Scale(domain=genre_counts['genre'].tolist(), range=[
-    '#FF6347', '#FF4500', '#FFD700', '#FF8C00', '#DC143C', '#C71585', '#F08080', 
-    '#32CD32', '#8A2BE2', '#20B2AA', '#2E8B57', '#4682B4', '#D2691E', '#A52A2A', 
-    '#C0C0C0', '#8A2BE2'
-    ])
-
-    # Crear el gráfico de pie con porcentajes
-    pie_chart = alt.Chart(genre_counts).mark_arc().encode(
-        theta=alt.Theta(field="percentage", type="quantitative"),  # Tamaño de las porciones basado en porcentaje
-        color=alt.Color(field="genre", type="nominal", scale=color_palette),
-        tooltip=[alt.Tooltip("genre:N", title="Género"), #Mostrar datos al pasar el mouse
-                 alt.Tooltip("percentage:Q", format=".1f", title="Porcentaje")]  # Mostrar porcentaje formateado
-    ).properties(
-        title="Generos mas repetidos en las peliculas"
-    )
-    
-    # Mostrar el gráfico en Streamlit
-    st.altair_chart(pie_chart, use_container_width=True)
-#---------------------------------------------------------------------------
-    #Grafico de cantidad de peliculas que salen por año
-    #Nueva columna, convertiendola a numeros y quitando los val. nulos
-    dm['Año'] = pd.to_numeric(dm['date'], errors='coerce')
-
-    # Contar el número de películas por año y se crea una columna con eso
-    movie_counts = dm.groupby('Año').size().reset_index(name='Cantidad de peliculas')
-    
-    # Crear el gráfico de líneas con Altair
-    line_chart = alt.Chart(movie_counts).mark_line().encode(
-        x='Año:O',  # El eje x es el año 
-        y='Cantidad de peliculas:Q',  # El eje y es la cantidad de películas 
-    ).properties(
-        title='Número de películas por año'
-    )
-    
-    # Mostrar el gráfico en Streamlit
-    st.altair_chart(line_chart, use_container_width=True)
-#------------------------------------------------------------------------
-    #duración y rating dispersion
-    # Asegurarnos de que 'rating' y 'minute' son columnas numéricas
-    dm['rating'] = pd.to_numeric(dm['rating'], errors='coerce')
-    dm['minute'] = pd.to_numeric(dm['minute'], errors='coerce')
-    
-    # Eliminar filas con valores nulos
-    dm = dm.dropna(subset=['rating', 'minute'])
-    
-    # Crear el gráfico de dispersión con mejoras visuales
-    scatter_plot = alt.Chart(dm).mark_point(filled=True, opacity=0.6).encode(
-        x=alt.X('minute:Q', title='Duración (minutos)'),  # Título para el eje X
-        y=alt.Y('rating:Q', title='Popularidad (rating)'),  # Título para el eje Y
-        color=alt.Color('rating:Q', legend=alt.Legend(title='Rating')),
-        size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[50, 200])),  # Ajustar el tamaño de los puntos
-        tooltip=['minute', 'rating']  # Mostrar detalles al pasar el cursor
-    ).properties(
-        title="Relación entre Duración y Popularidad de Películas",
-        width=700,
-        height=400
-    ).configure_legend(
-    titleFontSize=14,
-    labelFontSize=12
-    ).configure_axis(
-        labelFontSize=12,
-        titleFontSize=14
-    ).configure_title(
-        fontSize=16,
-        anchor='start'
-    )
-    
-    # Mostrar el gráfico en Streamlit
-    st.altair_chart(scatter_plot, use_container_width=True)
+        # Contar el número de películas por año y se crea una columna con eso
+        movie_counts = dm.groupby('Año').size().reset_index(name='Cantidad de peliculas')
+        
+        # Crear el gráfico de líneas con Altair
+        line_chart = alt.Chart(movie_counts).mark_line().encode(
+            x='Año:O',  # El eje x es el año 
+            y='Cantidad de peliculas:Q',  # El eje y es la cantidad de películas 
+        ).properties(
+            title='Número de películas por año'
+        )
+        
+        # Mostrar el gráfico en Streamlit
+        st.altair_chart(line_chart, use_container_width=True)
+    #------------------------------------------------------------------------
+        #duración y rating dispersion
+        # Asegurarnos de que 'rating' y 'minute' son columnas numéricas
+        dm['rating'] = pd.to_numeric(dm['rating'], errors='coerce')
+        dm['minute'] = pd.to_numeric(dm['minute'], errors='coerce')
+        
+        # Eliminar filas con valores nulos
+        dm = dm.dropna(subset=['rating', 'minute'])
+        
+        # Crear el gráfico de dispersión con mejoras visuales
+        scatter_plot = alt.Chart(dm).mark_point(filled=True, opacity=0.6).encode(
+            x=alt.X('minute:Q', title='Duración (minutos)'),  # Título para el eje X
+            y=alt.Y('rating:Q', title='Popularidad (rating)'),  # Título para el eje Y
+            color=alt.Color('rating:Q', legend=alt.Legend(title='Rating')),
+            size=alt.Size('rating:Q', scale=alt.Scale(domain=[0, 5], range=[50, 200])),  # Ajustar el tamaño de los puntos
+            tooltip=['minute', 'rating']  # Mostrar detalles al pasar el cursor
+        ).properties(
+            title="Relación entre Duración y Popularidad de Películas",
+            width=700,
+            height=400
+        ).configure_legend(
+        titleFontSize=14,
+        labelFontSize=12
+        ).configure_axis(
+            labelFontSize=12,
+            titleFontSize=14
+        ).configure_title(
+            fontSize=16,
+            anchor='start'
+        )
+        
+        # Mostrar el gráfico en Streamlit
+        st.altair_chart(scatter_plot, use_container_width=True)
