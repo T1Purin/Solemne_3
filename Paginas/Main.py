@@ -375,10 +375,21 @@ def main():
             color='genre'
         ).properties(
             title='Top 10 Géneros con mayor calificacion'
+        ).add_selection(
+            alt.selection_single(fields=['genre'], name='Selecciona', empty='none')
         )
         
-        # Mostrar el gráfico en Streamlit
-        st.altair_chart(chart, use_container_width=True)
+        # Obtener el género seleccionado
+        selected_genre = st.session_state.get('Selecciona', {}).get('genre', None)
+        
+        if selected_genre:
+            st.write(f"Películas populares en el género {selected_genre}:")
+            popular_movies = df_filtered[df_filtered['genre'] == selected_genre].sort_values(
+                by='rating', ascending=False
+            ).head(10)
+            st.table(popular_movies[['title', 'rating', 'date']])
+                
+                
     #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
         # cantidad de veces que aprece cada genero
