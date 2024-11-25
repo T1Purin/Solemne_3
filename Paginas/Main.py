@@ -346,16 +346,15 @@ def main():
     #------------------------------------------------------------------------
         
         
-       # Asegúrate de que la columna 'rating' esté en formato numérico
-        df_merged['rating'] = pd.to_numeric(df_merged['rating'], errors='coerce')
-        
-        # Eliminar valores nulos en 'rating' antes de agrupar
-        df_merged = df_merged.dropna(subset=['rating'])
+        dg_combined = pd.DataFrame(data_dg_combined)
+
+        # Unir los DataFrames por la columna 'id'
+        df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
         
         # Calcular el promedio de rating por género
         genre_ratings = df_merged.groupby('genre')['rating'].mean().reset_index()
         
-        # Crear una selección para el gráfico (para seleccionar un género)
+        # Crear una selección para el gráfico (interactividad)
         selection = alt.selection_single(fields=['genre'], bind='legend', name='Selecciona', empty='none')
         
         # Crear el gráfico con Altair
@@ -375,14 +374,15 @@ def main():
         # Mostrar el gráfico en Streamlit
         st.altair_chart(chart, use_container_width=True)
         
-        # Filtrar las películas según el género seleccionado
+        # Capturar el valor seleccionado en el gráfico
         selected_genre = selection.value
         
+        # Verificar si hay un género seleccionado
         if selected_genre:
             # Filtrar las películas por el género seleccionado
             peliculas_genero = df_merged[df_merged['genre'] == selected_genre]
         
-            # Ordenar por rating y seleccionar las 10 mejores películas
+            # Ordenar las películas por rating y seleccionar las 10 mejores
             top_peliculas = peliculas_genero.sort_values(by='rating', ascending=False).head(10)
         
             # Mostrar las mejores 10 películas en una tabla
