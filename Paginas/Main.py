@@ -312,6 +312,38 @@ def main():
 
     
     elif opcion == "Gráficos":
+
+        # Combinar los DataFrames utilizando 'id' como clave
+        df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
+        
+        # Convertir la columna 'date' a numérica (año)
+        df_merged['Año'] = pd.to_numeric(df_merged['date'], errors='coerce')
+        
+        # Crear un widget de selección de géneros
+        generos_disponibles = ['Todos'] + sorted(df_merged['genre'].unique())
+        genero_seleccionado = st.selectbox("Selecciona un género", generos_disponibles)
+        
+        # Filtrar el DataFrame según el género seleccionado
+        if genero_seleccionado == 'Todos':
+            df_filtrado = df_merged
+        else:
+            df_filtrado = df_merged[df_merged['genre'] == genero_seleccionado]
+        
+        # Contar el número de películas por año
+        movie_counts = df_filtrado.groupby('Año').size().reset_index(name='Cantidad de peliculas')
+        
+        # Crear el gráfico de líneas con Altair
+        line_chart = alt.Chart(movie_counts).mark_line().encode(
+            x='Año:O',  # El eje x es el año 
+            y='Cantidad de peliculas:Q',  # El eje y es la cantidad de películas 
+        ).properties(
+            title=f'Número de películas por año ({genero_seleccionado})'
+        )
+        
+        # Mostrar el gráfico en Streamlit
+        st.altair_chart(line_chart, use_container_width=True)
+        
+    #------------------------------------------------------------------------
         
         
         # Unir los df de gneros y movies que tiene el rating
@@ -376,37 +408,7 @@ def main():
         # Mostrar el gráfico en Streamlit
         st.altair_chart(pie_chart, use_container_width=True)
     #---------------------------------------------------------------------------
-        # Combinar los DataFrames utilizando 'id' como clave
-        df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
-        
-        # Convertir la columna 'date' a numérica (año)
-        df_merged['Año'] = pd.to_numeric(df_merged['date'], errors='coerce')
-        
-        # Crear un widget de selección de géneros
-        generos_disponibles = ['Todos'] + sorted(df_merged['genre'].unique())
-        genero_seleccionado = st.selectbox("Selecciona un género", generos_disponibles)
-        
-        # Filtrar el DataFrame según el género seleccionado
-        if genero_seleccionado == 'Todos':
-            df_filtrado = df_merged
-        else:
-            df_filtrado = df_merged[df_merged['genre'] == genero_seleccionado]
-        
-        # Contar el número de películas por año
-        movie_counts = df_filtrado.groupby('Año').size().reset_index(name='Cantidad de peliculas')
-        
-        # Crear el gráfico de líneas con Altair
-        line_chart = alt.Chart(movie_counts).mark_line().encode(
-            x='Año:O',  # El eje x es el año 
-            y='Cantidad de peliculas:Q',  # El eje y es la cantidad de películas 
-        ).properties(
-            title=f'Número de películas por año ({genero_seleccionado})'
-        )
-        
-        # Mostrar el gráfico en Streamlit
-        st.altair_chart(line_chart, use_container_width=True)
-        
-    #------------------------------------------------------------------------
+
         #duración y rating dispersion
         # Asegurarnos de que 'rating' y 'minute' son columnas numéricas
         dm['rating'] = pd.to_numeric(dm['rating'], errors='coerce')
