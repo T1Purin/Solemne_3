@@ -313,15 +313,15 @@ def main():
     
     elif opcion == "Gráficos":
 
-        # Combinar los DataFrames utilizando 'id' como clave
+        # Combinar los DataFrames utilizando 'id' como clave, el how hace que solo esten presente los ids que coinciden
         df_merged = pd.merge(dm, dg_combined, on='id', how='inner')
         
         # Convertir la columna 'date' a numérica (año)
         df_merged['Año'] = pd.to_numeric(df_merged['date'], errors='coerce')
         
-        # Crear un widget de selección de géneros
+        # Crear un la casilla de seleccion de genersos, #sorted, es alfabeticamente
         generos_disponibles = ['Todos'] + sorted(df_merged['genre'].unique())
-        genero_seleccionado = st.selectbox("Selecciona un género", generos_disponibles)
+        genero_seleccionado = st.selectbox("Selecciona un género para verlo en el grafico", generos_disponibles)
         
         # Filtrar el DataFrame según el género seleccionado
         if genero_seleccionado == 'Todos':
