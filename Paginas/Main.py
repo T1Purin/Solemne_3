@@ -180,7 +180,7 @@ def main():
 
     opcion = st.sidebar.selectbox(
     "Seleccione una sección:",
-    ("Página principal", "Gráficos")
+    ("Página principal", "Gráficos"))
 
     if opcion == "Página principal":
         
