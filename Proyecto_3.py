@@ -7,17 +7,16 @@ from Paginas.Cartelera import cartelera
 #Gestionar la navegación entre páginas
 def app():
 
+    st.set_page_config(layout="wide")
+
     if "page" not in st.session_state:
         st.session_state.page = "Main"
 
     if st.session_state.page == "Main":
-        st.set_page_config(layout="wide")
-        main()
+        pass
     elif st.session_state.page == "DPeliculas":
-        st.set_page_config(layout="wide")
-        principal()
+        pass
     elif st.session_state.page == "Cartelera":
-        st.set_page_config(layout="wide")
-        cartelera()
+        pass
 
 app()
