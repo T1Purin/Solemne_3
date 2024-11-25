@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import random
 import altair as alt
+from Paginas.Pagina_principal import principal
 
 def main():
     st.image("Archivos/logo.png")
@@ -81,6 +82,7 @@ def main():
         # Crear botones para cambiar a la página personal
         if st.button("Buscar"):
             st.session_state.page = "DPeliculas"  # Cambiar a la página personal
+            principal()
 
 
     def cartelera_bar():
