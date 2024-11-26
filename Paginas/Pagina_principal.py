@@ -65,7 +65,6 @@ def principal():
     if "selected_movie" in st.session_state:
         movie_data = st.session_state.selected_movie
         movie_id = movie_data['id']  # ID de la película actual
-        st.write(movie_data['id'])
 
         # Mostrar la información de la película seleccionada (columna 1)
         col1, col2 = st.columns([1, 5])
