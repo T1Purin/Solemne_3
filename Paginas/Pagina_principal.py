@@ -1,65 +1,8 @@
 import streamlit as st
 import pandas as pd
-import requests
-import json
 
 def principal():
     st.image("Archivos/logo.png")
-
-        # Token de acceso personal de GitHub
-    GITHUB_TOKEN = "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"
-    GITHUB_REPO = "T1Purin/Solemne_3"  # Nombre del repositorio (usuario/repositorio)
-    FILE_PATH = "Archivos/reseñas.csv"  # Ruta del archivo en el repositorio
-
-    # Función para obtener el archivo desde GitHub
-    def obtener_contenido_archivo():
-        url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FILE_PATH}"
-        headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-        response = requests.get(url, headers=headers)
-        
-        if response.status_code == 200:
-            return response.json()  # Devuelve la metadata del archivo
-        else:
-            print("Error al obtener el archivo:", response.status_code)
-            return None
-
-    # Función para actualizar el archivo en GitHub
-    def actualizar_archivo_github(id, name, review):
-        contenido = obtener_contenido_archivo()
-        if contenido is None:
-            return "No se pudo obtener el archivo."
-        
-        # Leer el archivo CSV desde el contenido obtenido
-        file_content = requests.get(contenido['download_url']).text
-        df = pd.read_csv(pd.compat.StringIO(file_content))  # Leer el contenido del CSV
-        
-        # Crear un nuevo registro con la reseña
-        new_movie = {'id': id, 'name': name, 'review': review}
-        new_movie_df = pd.DataFrame([new_movie])
-        
-        # Agregar la nueva reseña al DataFrame
-        df = pd.concat([df, new_movie_df], ignore_index=True)
-        
-        # Convertir el DataFrame actualizado a CSV
-        updated_csv = df.to_csv(index=False)
-        
-        # Realizar la petición PUT para actualizar el archivo en GitHub
-        url = f"https://api.github.com/repos/{GITHUB_REPO}/contents/{FILE_PATH}"
-        headers = {"Authorization": f"token {GITHUB_TOKEN}"}
-        
-        # Necesitamos el sha del archivo actual para actualizarlo
-        data = {
-            "message": "Actualizar reseña",  # Mensaje del commit
-            "content": updated_csv.encode('utf-8').decode('utf-8'),  # Contenido actualizado
-            "sha": contenido['sha'],  # SHA del archivo original
-        }
-        
-        response = requests.put(url, headers=headers, data=json.dumps(data))
-        
-        if response.status_code == 200:
-            return "Reseña guardada correctamente en GitHub."
-        else:
-            return f"Error al guardar la reseña: {response.status_code}"
 
     # Función para agregar una reseña al archivo CSV
     def agregar_reseña(id, name, review, archivo='Archivos/reseñas.csv'):
@@ -168,7 +111,6 @@ def principal():
 
                 # Llamamos a la función para guardar la reseña en el archivo CSV
                 agregar_reseña(movie_data['id'], name, review)
-                actualizar_archivo_github(id, name, review)
 
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
