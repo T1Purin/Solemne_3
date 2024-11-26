@@ -49,13 +49,23 @@ def cartelera():
         with col1:
             st.image(cartelera_data['poster_url'], caption=cartelera_data['name'], width=230)
         with col2:
+            minute_value = cartelera_data['minute'][0]
+            try:
+                minute_value = int(minute_value)  # Intentamos convertirlo a entero
+            except (ValueError, TypeError):  # Capturamos posibles errores de conversión
+                minute_value = 0  # Asignamos un valor predeterminado si no se puede convertir
             st.title(cartelera_data['name'])
-            st.caption(f"Géneros: {cartelera_data['genres']}, Duración: {int(cartelera_data['minute'][0])} minutos.")
+            st.caption(f"Géneros: {cartelera_data['genres']}, Duración: {minute_value} minutos.")
             st.write(cartelera_data['tagline'][0])
             st.write(f"Actores: {cartelera_data['actors']}")
             st.write(cartelera_data['description'][0])
-            st.write(f'Calificación: {cartelera_data["rating"][0]}')
-            st.progress(float(cartelera_data["rating"][0]) / 5)
+            rating_value = cartelera_data["rating"][0]
+            try:
+                rating_value = float(rating_value) if rating_value else 0  # Usar 0 si rating es vacío o no válido
+            except ValueError:
+                rating_value = 0  # Asignamos 0 si no se puede convertir a float
+            st.write(f'Calificación: {rating_value}')
+            st.progress(rating_value / 5)  # Asegúrate de que rating esté en el formato adecuado (0-5)
 
         name = st.text_input("Ingresa tu nombre:")
         review = st.text_area("Escribe tu reseña:")
@@ -86,21 +96,21 @@ def cartelera():
         st.subheader('Puede que te interesen...')
 
         if 'genres_3' in cartelera_data and not cartelera_data['genres_3'].empty:
-            cols = st.columns(3)
+            cols = st.columns(6)
             filtered_similar_movies = cartelera_data['genres_3'][cartelera_data['genres_3']['id'] != cartelera_id]
             displayed_movie_ids = [cartelera_id] 
             for col in cols:
                 displayed_movie_ids += [movie['id'] for movie in st.session_state.get('displayed_movies', [])]
             filtered_similar_movies = filtered_similar_movies[~filtered_similar_movies['id'].isin(displayed_movie_ids)]
 
-            if len(filtered_similar_movies) < 3:
+            if len(filtered_similar_movies) < 6:
                 other_movies = cartelera_data['genres_3'][cartelera_data['genres_3']['id'] != cartelera_id]
                 other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
  
-                additional_movies = other_movies.head(3 - len(filtered_similar_movies))
+                additional_movies = other_movies.head(6 - len(filtered_similar_movies))
                 filtered_similar_movies = pd.concat([filtered_similar_movies, additional_movies], ignore_index=True)
 
-            filtered_similar_movies = filtered_similar_movies.head(3)
+            filtered_similar_movies = filtered_similar_movies.head(6)
           
             st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
           
@@ -147,7 +157,7 @@ def cartelera():
                 
                                     movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
 
-                                    movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
+                                    movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(7)
 
                                     # guardar datos seleccionados en session_state para usarlos en la página personal
                                     st.session_state.selected_movie = {

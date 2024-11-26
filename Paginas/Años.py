@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 
-def principal():
+def años():
     st.image("Archivos/logo.png")
 
     # Función para agregar una reseña al archivo CSV
@@ -62,27 +62,27 @@ def principal():
 
     # Verificar si ya hay una película seleccionada en session_state
     if "selected_movie" in st.session_state:
-        movie_data = st.session_state.selected_movie
-        movie_id = movie_data['id']  # ID de la película actual
+        años_data = st.session_state.selected_movie_años
+        años_id = años_data['id']  # ID de la película actual
 
         # Mostrar la información de la película seleccionada (columna 1)
         col1, col2 = st.columns([1, 5])
         with col1:
-            st.image(movie_data['poster_url'], caption=movie_data['name'], width=230)
+            st.image(años_data['poster_url'], caption=años_data['name'], width=230)
 
         with col2:
-            minute_value = movie_data['minute'][0]
+            minute_value = años_data['minute'][0]
             try:
                 minute_value = int(minute_value)  # Intentamos convertirlo a entero
             except (ValueError, TypeError):  # Capturamos posibles errores de conversión
                 minute_value = 0  # Asignamos un valor predeterminado si no se puede convertir
-            st.title(movie_data['name'])
-            st.caption(f"Géneros: {movie_data['genres']}, Duración: {minute_value} minutos.")
-            st.write(movie_data['tagline'][0])
-            st.write(f"Actores: {movie_data['actors']}")
-            st.write(movie_data['description'][0])
+            st.title(años_data['name'])
+            st.caption(f"Géneros: {años_data['genres']}, Duración: {minute_value} minutos.")
+            st.write(años_data['tagline'][0])
+            st.write(f"Actores: {años_data['actors']}")
+            st.write(años_data['description'][0])
             # Verificar que la calificación no esté vacía o sea inválida antes de convertirla a float
-            rating_value = movie_data["rating"][0]
+            rating_value = años_data["rating"][0]
             try:
                 rating_value = float(rating_value) if rating_value else 0  # Usar 0 si rating es vacío o no válido
             except ValueError:
@@ -95,22 +95,22 @@ def principal():
         review = st.text_area("Escribe tu reseña:")
 
         # Mostrar reseñas ya existentes para esta película
-        if movie_id in st.session_state.reviews:
+        if años_id in st.session_state.reviews:
             st.subheader("Reseñas:")
-            for review_entry in st.session_state.reviews[movie_id]:
+            for review_entry in st.session_state.reviews[años_id]:
                 st.write(f"{review_entry['name']}: {review_entry['review']}")
 
         # Botón para enviar la reseña
         if st.button("Enviar reseña"):
             if name and review:
                 # Guardar la reseña en el diccionario de reseñas
-                if movie_id not in st.session_state.reviews:
-                    st.session_state.reviews[movie_id] = []  # Inicializa la lista si es la primera reseña
+                if años_id not in st.session_state.reviews:
+                    st.session_state.reviews[años_id] = []  # Inicializa la lista si es la primera reseña
 
-                st.session_state.reviews[movie_id].append({'name': name, 'review': review})
+                st.session_state.reviews[años_id].append({'name': name, 'review': review})
 
                 # Llamamos a la función para guardar la reseña en el archivo CSV
-                agregar_reseña(movie_data['id'], name, review)
+                agregar_reseña(años_data['id'], name, review)
 
                 st.write(f"Gracias {name} por tu reseña:")
                 st.write(review)
@@ -122,14 +122,14 @@ def principal():
         st.subheader('Puede que te interesen...')
 
         # Mostrar las 6 películas similares (si existen)
-        if 'genres_3' in movie_data and not movie_data['genres_3'].empty:
+        if 'genres_3' in años_data and not años_data['genres_3'].empty:
             cols = st.columns(6)  # Usamos 6 columnas para las películas similares
 
             # Filtrar las películas similares para excluir la película actual
-            filtered_similar_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
+            filtered_similar_movies = años_data['genres_3'][años_data['genres_3']['id'] != años_id]
 
             # Asegurarse de que no haya duplicados de las películas ya mostradas
-            displayed_movie_ids = [movie_id]  # Inicializamos con el ID de la película seleccionada
+            displayed_movie_ids = [años_id]  # Inicializamos con el ID de la película seleccionada
 
             # Iteramos sobre las columnas para obtener los IDs de las películas que ya están en la barra
             for col in cols:
@@ -140,7 +140,7 @@ def principal():
 
             # Si hay menos de 6 películas similares, reemplazamos las faltantes con otras películas
             if len(filtered_similar_movies) < 6:
-                other_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
+                other_movies = años_data['genres_3'][años_data['genres_3']['id'] != años_id]
                 other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
 
                 # Añadimos más películas hasta completar 6

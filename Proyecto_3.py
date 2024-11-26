@@ -2,6 +2,7 @@ import streamlit as st
 from Paginas.Main import main
 from Paginas.Pagina_principal import principal
 from Paginas.Cartelera import cartelera
+from Paginas.Años import años
 
 
 #Gestionar la navegación entre páginas
@@ -18,5 +19,7 @@ def app():
         principal()
     elif st.session_state.page == "Cartelera":
         cartelera()
+    elif st.session_state.page == "Años":
+        años()
 
 app()
