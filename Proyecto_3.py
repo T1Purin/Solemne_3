@@ -15,8 +15,8 @@ def app():
     if st.session_state.page == "Main":
         main()
     elif st.session_state.page == "DPeliculas":
-        pass
+        principal()
     elif st.session_state.page == "Cartelera":
-        pass
+        cartelera()
 
 app()

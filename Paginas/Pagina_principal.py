@@ -65,20 +65,32 @@ def principal():
     if "selected_movie" in st.session_state:
         movie_data = st.session_state.selected_movie
         movie_id = movie_data['id']  # ID de la película actual
+        st.write(movie_data['id'])
 
         # Mostrar la información de la película seleccionada (columna 1)
-        col1, col2 = st.columns([1, 2])
+        col1, col2 = st.columns([1, 5])
         with col1:
             st.image(movie_data['poster_url'], caption=movie_data['name'], width=230)
 
         with col2:
+            minute_value = movie_data['minute'][0]
+            try:
+                minute_value = int(minute_value)  # Intentamos convertirlo a entero
+            except (ValueError, TypeError):  # Capturamos posibles errores de conversión
+                minute_value = 0  # Asignamos un valor predeterminado si no se puede convertir
             st.title(movie_data['name'])
-            st.caption(f"Géneros: {movie_data['genres']}, Duración: {int(movie_data['minute'][0])} minutos.")
+            st.caption(f"Géneros: {movie_data['genres']}, Duración: {minute_value} minutos.")
             st.write(movie_data['tagline'][0])
             st.write(f"Actores: {movie_data['actors']}")
             st.write(movie_data['description'][0])
-            st.write(f'Calificación: {movie_data["rating"][0]}')
-            st.progress(float(movie_data["rating"][0]) / 5)  # Asegúrate de que rating esté en el formato adecuado (0-5)
+            # Verificar que la calificación no esté vacía o sea inválida antes de convertirla a float
+            rating_value = movie_data["rating"][0]
+            try:
+                rating_value = float(rating_value) if rating_value else 0  # Usar 0 si rating es vacío o no válido
+            except ValueError:
+                rating_value = 0  # Asignamos 0 si no se puede convertir a float
+            st.write(f'Calificación: {rating_value}')
+            st.progress(rating_value / 5)  # Asegúrate de que rating esté en el formato adecuado (0-5)
 
         # Crear la caja para ingresar el nombre y la reseña
         name = st.text_input("Ingresa tu nombre:")
@@ -111,9 +123,9 @@ def principal():
 
         st.subheader('Puede que te interesen...')
 
-        # Mostrar las 4 películas similares (si existen)
+        # Mostrar las 6 películas similares (si existen)
         if 'genres_3' in movie_data and not movie_data['genres_3'].empty:
-            cols = st.columns(3)  # Usamos 3 columnas para las películas similares
+            cols = st.columns(6)  # Usamos 6 columnas para las películas similares
 
             # Filtrar las películas similares para excluir la película actual
             filtered_similar_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
@@ -128,32 +140,30 @@ def principal():
             # Excluir cualquier película que ya se haya mostrado previamente
             filtered_similar_movies = filtered_similar_movies[~filtered_similar_movies['id'].isin(displayed_movie_ids)]
 
-            # Si hay menos de 3 películas similares, reemplazamos las faltantes con otras películas
-            if len(filtered_similar_movies) < 3:
+            # Si hay menos de 6 películas similares, reemplazamos las faltantes con otras películas
+            if len(filtered_similar_movies) < 6:
                 other_movies = movie_data['genres_3'][movie_data['genres_3']['id'] != movie_id]
                 other_movies = other_movies[~other_movies['id'].isin(filtered_similar_movies['id'])]
 
-                # Añadimos más películas hasta completar 3
-                additional_movies = other_movies.head(3 - len(filtered_similar_movies))
+                # Añadimos más películas hasta completar 6
+                additional_movies = other_movies.head(6 - len(filtered_similar_movies))
                 filtered_similar_movies = pd.concat([filtered_similar_movies, additional_movies], ignore_index=True)
 
-            # Asegurarse de que haya exactamente 3 películas
-            filtered_similar_movies = filtered_similar_movies.head(3)
+            # Asegurarse de que haya exactamente 6 películas
+            filtered_similar_movies = filtered_similar_movies.head(6)
 
             # Guardamos los IDs de las películas que vamos a mostrar en la barra para evitar duplicados en futuras consultas
             st.session_state['displayed_movies'] = filtered_similar_movies.to_dict(orient='records')
 
             # Iterar sobre las películas similares y asignar cada una a una columna
             for idx, (index, row) in enumerate(filtered_similar_movies.iterrows()):
-
                 with cols[idx]:  # Usar la columna correspondiente
                     st.image(row['link'], caption=row['name'], width=220)
                     
                     # Crear un botón para cada película que redirige a la página de detalles
                     if st.button(f"{row['name']}", key=f"movie_button_{row['id']}"):
-
                         # Archivos de géneros (divididos en múltiples archivos)
-                        genre_files = [f'Archivos/genres_part{i}.csv' for i in range(1, 2)]  # Suponiendo que hay 11 archivos de géneros
+                        genre_files = [f'Archivos/genres_part{i}.csv' for i in range(1, 2)]  # Suponiendo que hay 1 archivo de géneros
 
                         # Archivos de actores (58 partes)
                         actor_files = [f'Archivos/actors_part{i}.csv' for i in range(1, 8)]  # Cargar los 58 archivos de actores
@@ -197,8 +207,8 @@ def principal():
                                     # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
                                     movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
 
-                                    # Obtener las tres primeras películas por género
-                                    movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
+                                    # Obtener las 6 primeras películas por género
+                                    movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(6)
 
                                     # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
                                     st.session_state.selected_movie = {
@@ -213,12 +223,14 @@ def principal():
                                         'poster_url': movie_poster_url,
                                         'genres_3': movie_genres_3  # Aquí están las películas similares
                                     }
+
+                                    # Cambiar la página a "DPeliculas" (detalles de la película)
+                                    st.session_state.page = "DPeliculas"
+                                    st.rerun()
         else:
             st.write("No se ha seleccionado ninguna película aún.")
 
-    # Crear un botón para regresar a la página principal
-    st.write('Dale dos clics al botón para regresar:')
-    if st.button("Regresar a la Página Principal"):
-        st.session_state.page = "Main"  # Cambiar a la página principal
-        st.session_state.selected_movie = None  # Limpiar la película seleccionada
-
+        # Crear un botón para regresar a la página principal
+        if st.button("Regresar a la Página Principal"):
+            st.session_state.page = "Main"  # Cambiar a la página principal
+            st.rerun()

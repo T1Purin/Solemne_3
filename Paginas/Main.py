@@ -31,7 +31,6 @@ def main():
         movie_names = dm['name'].unique()
         movie_selected = st.selectbox("Selecciona una película", movie_names)
 
-
         if movie_selected:
             # Buscar los datos relacionados con la película seleccionada
             movie_id = dm[dm['name'] == movie_selected]['id'].values[0]
@@ -78,12 +77,10 @@ def main():
             else:
                 st.write("No se encontraron géneros para esta película.")
                 
-        st.write('Dale dos clicks al botón después de seleccionar la película: ')
         # Crear botones para cambiar a la página personal
         if st.button("Buscar"):
             st.session_state.page = "DPeliculas"  # Cambiar a la página personal
-            principal()
-
+            st.rerun()
 
     def cartelera_bar():
         # Definir los géneros
@@ -179,6 +176,7 @@ def main():
 
                     # Cambiar la página a "DPeliculas" (detalles de la película)
                     st.session_state.page = "Cartelera"
+                    st.rerun()
 
     opcion = st.sidebar.selectbox(
     "Seleccione una sección:",
@@ -207,18 +205,20 @@ def main():
         with col1:
             if st.button('Buscar por película'):
                 st.session_state.search_type = 'movie'  # Guardar la elección en session_state
+                st.rerun()
     
         with col2:
             if st.button('Buscar por género'):
                 st.session_state.search_type = 'genre'  # Guardar la elección en session_state
-    
+                st.rerun()
+
         st.subheader('Tendencias del momento')
     
         # Seleccionar 4 películas aleatorias
-        random_movies = dm.sample(n=4, random_state=42)  # Selecciona 4 películas aleatorias
+        random_movies = dm.sample(n=6, random_state=62)  # Selecciona 4 películas aleatorias
     
         # Crear las columnas para mostrar las películas de manera lateral
-        columns = st.columns(4)  # Crear 4 columnas
+        columns = st.columns(6)  # Crear 4 columnas
     
         # Mostrar las películas en las 4 columnas
         for i, (col, row) in enumerate(zip(columns, random_movies.iterrows())):
@@ -228,7 +228,7 @@ def main():
             # Mostrar el nombre de la película y el póster en cada columna
             with col:
                 if len(movie_poster_url) > 0:
-                    st.image(movie_poster_url[0], width=140)
+                    st.image(movie_poster_url[0], width=170)
                     a = col.button(movie_name)
                     if a:
                         # Obtener el id de la película
@@ -278,6 +278,7 @@ def main():
     
                         # Cambiar la página a "DPeliculas" (detalles de la película)
                         st.session_state.page = "Cartelera"
+                        st.rerun()
     
                 else:
                     st.write("Póster no disponible")
@@ -345,7 +346,6 @@ def main():
         # Mostrar el gráfico en Streamlit
         st.altair_chart(line_chart, use_container_width=True)
         
-    #------------------------------------------------------------------------
        # Unir los df y que coincidan con id
         df_merged = pd.merge(dg_combined, dm, on='id')
         
@@ -394,7 +394,6 @@ def main():
         
         st.altair_chart(chart, use_container_width=True)
                         
-    #----------------------------------------------------------------------------------
         #Generos mas repetidos en peliculas
         # cantidad de veces que aprece cada genero
         genre_counts = dg_combined['genre'].value_counts().reset_index()
@@ -422,7 +421,6 @@ def main():
         
         # Mostrar el gráfico en Streamlit
         st.altair_chart(pie_chart, use_container_width=True)
-    #---------------------------------------------------------------------------
 
         #duración y rating dispersion
         # Asegurarnos de que 'rating' y 'minute' son columnas numéricas

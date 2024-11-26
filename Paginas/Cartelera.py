@@ -45,7 +45,7 @@ def cartelera():
         cartelera_id = cartelera_data['id']  # ID de la película actual
 
         # mostrar pelicula
-        col1, col2 = st.columns([1, 2])
+        col1, col2 = st.columns([1, 5])
         with col1:
             st.image(cartelera_data['poster_url'], caption=cartelera_data['name'], width=230)
         with col2:
@@ -162,11 +162,13 @@ def cartelera():
                                         'poster_url': movie_poster_url,
                                         'genres_3': movie_genres_3  # peliculas similares
                                     }
+                                    # Cambiar la página a "DPeliculas" (detalles de la película)
+                                    st.session_state.page = "DPeliculas"
+                                    st.rerun()
     else:
         st.write("No se ha seleccionado ninguna película aún.")
     
-    st.write('Dale dos clics al botón para regresar:')
     if st.button("Regresar a la Página Principal"):
         st.session_state.page = "Main"  # Cambiar a la página principal
-        st.session_state.selected_movie = None  # Limpiar la película seleccionada
+        st.rerun()
 
