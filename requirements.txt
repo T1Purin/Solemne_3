@@ -2,4 +2,4 @@ pandas
 streamlit
 requests
 altair
-
+json

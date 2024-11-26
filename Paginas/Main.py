@@ -89,11 +89,11 @@ def main():
         if genre_selection != "Seleccione un género":
             genero_movies = dg_combined[dg_combined["genre"] == genre_selection]["id"].unique()
             filtrar_movies = dm[dm["id"].isin(genero_movies)]
-            top10 = filtrar_movies.head(10)
+            top10 = filtrar_movies.head(12)
 
             st.write(f"Top 10 películas de {genre_selection}")
 
-            # Inicializar el indice de peliculña en la sesión si no existe
+            # Inicializar el indice de pelicula en la sesión si no existe
             if "movie_index" not in st.session_state:
                 st.session_state.movie_index = 0
 
@@ -103,16 +103,16 @@ def main():
             with col1:
                 if st.session_state.movie_index > 0:
                     if st.button("←", use_container_width=False):
-                        st.session_state.movie_index -= 5
+                        st.session_state.movie_index -= 6
 
             # Botón siguiente
             with col2:
-                if st.session_state.movie_index < len(top10) - 5:
+                if st.session_state.movie_index < len(top10) - 6:
                     if st.button("→", use_container_width=False):
-                        st.session_state.movie_index += 5
+                        st.session_state.movie_index += 6
 
-            selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
-            columns = st.columns(5)
+            selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 6]
+            columns = st.columns(6)
 
             for index, (col, row) in enumerate(zip(columns, selected_movies.iterrows())):
                 movie_name = row[1]["name"]
@@ -120,7 +120,7 @@ def main():
 
                 # Mostrar la imagen y el nombre de la película
                 if len(movie_poster_url) > 0:
-                    col.image(movie_poster_url[0], width=140)
+                    col.image(movie_poster_url[0], width=170)
                 else:
                     col.write("Póster no disponible")
 
@@ -178,145 +178,101 @@ def main():
                     st.rerun()
 
     def años_bar():
-        # Asegúrate de que la columna 'date' esté en formato de fecha
-        dm['date'] = pd.to_datetime(dm['date'], errors='coerce')  # Convertir a fechas (si no lo están)
-        años = dm['date'].dropna().dt.year.unique()  # Extraer el año de las fechas, eliminando valores nulos
+        años_names = pd.to_numeric(dm['date'], errors='coerce').dropna().astype(int).unique()
+        años_names_sorted = sorted(años_names)  # Ordenar los años de menor a mayor
+        años_selected = st.selectbox("Selecciona un año", ["Seleccione un año"] + list(años_names_sorted))
 
-        # Verificar si los valores de 'años' son numéricos
-        if isinstance(años[0], str):
-            # Si los valores son cadenas, conviértelos a enteros
-            años = años.astype(int)
+        if años_selected != "Seleccione un año":
+            años_movies = dm[dm["date"] == años_selected]["id"].unique()
+            filtrar_movies = dm[dm["id"].isin(años_movies)]
+            top10 = filtrar_movies.head(12)
 
-        # Si hay solo un año, lo dejamos predeterminado en el slider, pero con la posibilidad de seleccionar otros años.
-        if len(años) == 1:
-            st.write(f"Solo hay películas del año {años[0]}. Mostrando las películas de este año.")
-            year_range = años[0]  # Predeterminado a ese único año
-        else:
-            # Si hay varios años, crear el slider para seleccionar un solo año
-            year_range = st.sidebar.slider(
-                'Selecciona un año',
-                min_value=min(años),
-                max_value=max(años),
-                value=min(años),  # Valor predeterminado al primer año
-                step=1
-            )
+            st.write(f"Top 10 películas de {años_selected}")
 
-        # Filtrar las películas dentro del año seleccionado
-        filtered_movies = dm[dm['date'].dt.year == year_range]
-        
-        # Asegúrate de que la columna 'rating' sea numérica y maneja errores
-        filtered_movies['rating'] = pd.to_numeric(filtered_movies['rating'], errors='coerce')
-        
-        # Eliminar las filas con NaN en la columna 'rating' (si hay valores no numéricos)
-        filtered_movies = filtered_movies.dropna(subset=['rating'])
-        
-        # Ordenar las películas por rating (de mayor a menor) y obtener las 30 mejores
-        top30_years = filtered_movies.sort_values(by="rating", ascending=False).head(30)
-
-        # Caso de que no haya películas en el rango
-        if filtered_movies.empty:
-            st.write(f"No hay películas disponibles para el año {year_range}.")
-        else:
-            st.write(f"### Mejores 30 Películas del año {year_range}:")
-
-            # IDs de las películas del rango
-            movie_ids = filtered_movies['id'].unique()
-
-            # Filtrar el df por esos ids
-            filtered_details = dm[dm['id'].isin(movie_ids)]
-
-            # Inicializamos la variable de estado para las películas si no existe
+            # Inicializar el indice de pelicula en la sesión si no existe
             if "movie_index" not in st.session_state:
-                st.session_state.movie_index = 0  # Comenzamos desde la primera película
+                st.session_state.movie_index = 0
 
-            # Esto es para las flechas de navegación
             col1, col2 = st.columns([17, 1])
 
             # Botón anterior
             with col1:
                 if st.session_state.movie_index > 0:
-                    if st.button("←", use_container_width=False, key="boton izquierda"):
-                        st.session_state.movie_index -= 5
+                    if st.button("←", use_container_width=False):
+                        st.session_state.movie_index -= 6
 
             # Botón siguiente
             with col2:
-                if st.session_state.movie_index < len(top30_years) - 5:
-                    if st.button("→", use_container_width=False, key="boton derecha"):
-                        st.session_state.movie_index += 5
+                if st.session_state.movie_index < len(top10) - 6:
+                    if st.button("→", use_container_width=False):
+                        st.session_state.movie_index += 6
 
-            # Mostrar las 5 mejores películas
-            selected_movies = top30_years.iloc[st.session_state.movie_index:st.session_state.movie_index + 5]
-
-            # Estos son las columnas para las imágenes de las películas
-            columns = st.columns(5)
+            selected_movies = top10.iloc[st.session_state.movie_index:st.session_state.movie_index + 6]
+            columns = st.columns(6)
 
             for index, (col, row) in enumerate(zip(columns, selected_movies.iterrows())):
                 movie_name = row[1]["name"]
                 movie_poster_url = dp[dp["id"] == row[1]["id"]]["link"].values
-                numeracion = f"{st.session_state.movie_index + index + 1}.- {movie_name}"
 
-                if len(movie_poster_url) > 0:
-                    col.image(movie_poster_url[0], width=250)
+                # Mostrar la imagen y el nombre de la película
+                # Verificar si la URL de la imagen está vacía
+                if len(movie_poster_url) > 0 and movie_poster_url[0] != '':
+                    # Mostrar la imagen y el nombre de la película
+                    col.image(movie_poster_url[0], width=170)
                 else:
-                    col.write("Póster no disponible")
+                    # Si no hay imagen, mostrar un mensaje alternativo o una imagen por defecto
+                    col.image("Archivos/404.png")
 
-                movie_id = row[1]["id"]
-                button_key = f"movie_button_{index}"
+                # Botón para la película
+                b = col.button(movie_name)
 
-                if col.button(numeracion, key=button_key):
-                    # Aquí puedes agregar cualquier lógica que necesites cuando se presione el botón
-                    movie_selected = movie_name  # La película seleccionada
+                if b:
                     # Buscar los datos relacionados con la película seleccionada
-                    movie_id = dm[dm['name'] == movie_selected]['id'].values[0]
+                    años_id = row[1]["id"]
 
                     # Buscar géneros, actores y la URL del póster para esta película
-                    movie_genres = dg_combined[dg_combined['id'] == movie_id]['genre'].unique()  # Usar los géneros combinados
-                    movie_actors = da_combined[da_combined['id'] == movie_id]['name'].unique()[:5]  # Usar los actores combinados
-                    movie_tagline = dm[dm['id'] == movie_id]['tagline'].unique()
-                    movie_description = dm[dm['id'] == movie_id]['description'].unique()
-                    movie_rating = dm[dm['id'] == movie_id]['rating'].unique()
-                    movie_minute = dm[dm['id'] == movie_id]['minute'].unique()
-                    movie_poster_url = dp[dp['id'] == movie_id]['link'].values[0]
+                    años_name = dm[dm["id"] == años_id]["name"].values[0]
+                    años_genres = dg_combined[dg_combined['id'] == años_id]['genre'].unique()  # Usar los géneros combinados
+                    años_actors = da_combined[da_combined['id'] == años_id]['name'].unique()[:5]  # Usar los actores combinados
+                    años_tagline = dm[dm['id'] == años_id]['tagline'].unique()
+                    años_description = dm[dm['id'] == años_id]['description'].unique()
+                    años_rating = dm[dm['id'] == años_id]['rating'].unique()
+                    años_minute = dm[dm['id'] == años_id]['minute'].unique()
+                    años_poster_url = dp[dp['id'] == años_id]['link'].values[0]
 
                     # Verificar que movie_genres no esté vacío antes de intentar concatenar
-                    if len(movie_genres) > 0:
+                    if len(años_genres) > 0:
                         # Concatenar las películas de los géneros seleccionados
-                        movie_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in movie_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
-
-                        if movie_genres_3.empty:
+                        años_genres_3 = pd.concat([dg_combined[dg_combined['genre'] == genre] for genre in años_genres if not dg_combined[dg_combined['genre'] == genre].empty], ignore_index=True)
+                        
+                        if años_genres_3.empty:
                             st.write("No se encontraron películas similares para los géneros seleccionados.")
                         else:
                             # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
-                            movie_genres_3 = movie_genres_3.merge(dm[['id', 'name']], on='id', how='left')
+                            años_genres_3 = años_genres_3.merge(dm[['id', 'name']], on='id', how='left')
 
                             # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
-                            movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
+                            años_genres_3 = años_genres_3.merge(dp[['id', 'link']], on='id', how='left')
 
-                            # Mostrar las películas similares
-                            movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(7)
-                            
+                            # Obtener las tres primeras películas por género
+                            años_genres_3 = años_genres_3.drop_duplicates(subset=['id']).head(7)
+
                             # Guardar todos los datos seleccionados en session_state para usarlos en la página personal
-                            st.session_state.selected_movie = {
-                                'name': movie_selected,
-                                'id': movie_id,
-                                'genres': ', '.join(movie_genres),
-                                'actors': ', '.join(movie_actors),
-                                'tagline': movie_tagline,
-                                'description': movie_description,
-                                'rating': movie_rating,
-                                'minute': movie_minute,
-                                'poster_url': movie_poster_url,
-                                'genres_3': movie_genres_3  # Aquí están las películas similares
-                            }
-                    else:
-                        st.write("No se encontraron géneros para esta película.")
+                    st.session_state.selected_movie_años = {
+                        'name': años_name,
+                        'id': años_id,
+                        'genres': ', '.join(años_genres),
+                        'actors': ', '.join(años_actors),
+                        'tagline': años_tagline,
+                        'description': años_description,
+                        'rating': años_rating,
+                        'minute': años_minute,
+                        'poster_url': años_poster_url,
+                        'genres_3': años_genres_3  # Aquí están las películas similares
+                    }
 
-            # Crear botones para cambiar a la página personal
-            if st.button("Buscar"):
-                st.session_state.page = "Años"  # Cambiar a la página personal
-                st.rerun()
-
-
+                    st.session_state.page = "Años"  # Cambiar a la página personal
+                    st.rerun()
 
     opcion = st.sidebar.selectbox(
     "Seleccione una sección:",
@@ -335,9 +291,8 @@ def main():
             st.write("Buscador de Géneros:")
             cartelera_bar()  # Llamar al buscador de géneros
         elif st.session_state.search_type == 'años':
-            st.write("Buscador por años: ")
+            st.write("Buscador por años:")
             años_bar()
-
     
         # Mostrar la pregunta inicial para elegir entre los buscadores
         st.write("¿Qué tipo de buscador prefieres usar?")
