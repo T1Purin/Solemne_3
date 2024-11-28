@@ -331,8 +331,6 @@ def main():
 
             # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
             ids = ids.merge(dp[['id', 'link']])
-    
-        st.write(ids)
 
         # Crear las columnas para mostrar las películas de manera lateral
         columns = st.columns(6)  # Crear 4 columnas
