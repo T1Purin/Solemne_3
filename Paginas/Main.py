@@ -317,15 +317,28 @@ def main():
                 st.rerun()
 
         st.subheader('Tendencias del momento')
+
+        tendencias = ['Wicked', 'Gladiator II', 'The Substance', 'Deadpool & Wolverine', 'Anora', 'Terrifier 3']
+
+        # Concatenar las películas de los géneros seleccionados
+        ids = pd.concat([dm[dm['name'] == tendencia] for tendencia in tendencias if not dm[dm['name'] == tendencia].empty], ignore_index=True)
+        
+        if ids.empty:
+            st.write("No se encontraron películas similares para los géneros seleccionados.")
+        else:
+            # Unir los datos con el DataFrame de películas (dm) para obtener los nombres de las películas
+            ids = ids.merge(dm[['id', 'name']])
+
+            # Unir los datos con el DataFrame de pósters (dp) para obtener las URLs de los pósters
+            ids = ids.merge(dp[['id', 'link']])
     
-        # Seleccionar 4 películas aleatorias
-        random_movies = dm.sample(n=6, random_state=62)  # Selecciona 4 películas aleatorias
-    
+        st.write(ids)
+
         # Crear las columnas para mostrar las películas de manera lateral
         columns = st.columns(6)  # Crear 4 columnas
-    
+
         # Mostrar las películas en las 4 columnas
-        for i, (col, row) in enumerate(zip(columns, random_movies.iterrows())):
+        for i, (col, row) in enumerate(zip(columns, ids.iterrows())):
             movie_name = row[1]['name']
             movie_poster_url = dp[dp['id'] == row[1]['id']]['link'].values
             
@@ -363,7 +376,7 @@ def main():
                                 movie_genres_3 = movie_genres_3.merge(dp[['id', 'link']], on='id', how='left')
     
                                 # Obtener las tres primeras películas por género
-                                movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(4)
+                                movie_genres_3 = movie_genres_3.drop_duplicates(subset=['id']).head(7)
                                 # Guardar los detalles de la película seleccionada en session_state
                         
                         st.session_state.selected_movie_genre = {
